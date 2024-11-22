@@ -1,3 +1,5 @@
+package Projet_POO;
+
 public class Brigand extends Personnage implements MechantInterface{
 
     String nom; 

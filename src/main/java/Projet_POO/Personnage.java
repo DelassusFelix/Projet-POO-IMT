@@ -1,4 +1,4 @@
-
+package Projet_POO;
 
 public class Personnage{
     int pv;

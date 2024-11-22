@@ -1,3 +1,5 @@
+package Projet_POO;
+
 public class Voleur extends Personnage implements MechantInterface{
 
     String nom; 
