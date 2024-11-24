@@ -1,3 +1,5 @@
+package Projet_POO;
+
 public abstract class Personnage{
     int pv;
     int force;

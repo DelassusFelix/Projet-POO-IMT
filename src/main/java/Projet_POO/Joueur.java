@@ -1,3 +1,5 @@
+package Projet_POO;
+
 public class Joueur extends Personnage{
 
     String nom;

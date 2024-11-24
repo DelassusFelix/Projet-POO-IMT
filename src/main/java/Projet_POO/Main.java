@@ -4,16 +4,14 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        String brigand = "Brigand";
-        String voleur = "Voleur";
-        String catcheur = "Catcheur";
+        Personnage brigand = new Brigand(100, 15, 10, 15, "Brigand");
 
-        ArrayList<String> ennemisSalle1 = new ArrayList<String>();
-        ennemisSalle1.add(voleur);
-        ennemisSalle1.add(voleur);
+
+        ArrayList<Personnage> ennemisSalle1 = new ArrayList<Personnage>();
+        ennemisSalle1.add(brigand);
 
         ArrayList<String> ennemisSalle2 = new ArrayList<String>();
-        ennemisSalle2.add(catcheur);
+
 
 
     }
