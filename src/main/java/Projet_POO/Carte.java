@@ -1,29 +1,34 @@
 package Projet_POO;
 
-import java.util.ArrayList;
-
 public class Carte {
-    String nom;
-    ArrayList salles = new ArrayList<Salle>();
+    private String nom;
+    private String lieu;
+    private int longueur;
+    private int positionActuelle;
 
-    public Carte(String nom, ArrayList salles) {
+    public Carte(String nom, String lieu, int longueur) {
         this.nom = nom;
-        this.salles = salles;
+        this.lieu = lieu;
+        this.longueur = longueur;
+        this.positionActuelle = 0; // Position de départ
+    }
+
+    public void avancer() {
+        if (positionActuelle < longueur) {
+            positionActuelle++;
+        }
+    }
+
+    public boolean estArrivee() {
+        return positionActuelle == longueur;
+    }
+
+    public int getPositionActuelle() {
+        return positionActuelle;
     }
 
     public String getNom() {
         return nom;
     }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public ArrayList getSalles() {
-        return salles;
-    }
-
-    public void setSalles(ArrayList salles) {
-        this.salles = salles;
-    }
 }
+
