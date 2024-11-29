@@ -54,4 +54,6 @@ public class Partie {
     public void setCartes(ArrayList cartes) {
         this.cartes = cartes;
     }
+
+    
 }

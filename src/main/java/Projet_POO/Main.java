@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+
+        XML xml = new XML();
+        System.out.println(xml.afficherScore("Donjon Ténébreux"));
+
         CPotion potion = new CPotion();
         CGrosseEpee degat = new CGrosseEpee();
 
@@ -30,6 +34,11 @@ public class Main {
         joueur1.setCapacite(degat);
         joueur1.capacite.useEffect(joueur1);
         System.out.println(joueur1.toString());
+
+        xml.modifyXML("Donjon Ténébreux", 16000);
+
+
+
 
 
         /* a conserver dans ce commit si besoin, premiere version des capacités.
