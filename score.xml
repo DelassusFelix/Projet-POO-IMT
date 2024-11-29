@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><cartes>
+    <carte>
+        <nomCarte>Donjon Ténébreux</nomCarte>
+        <nomJoueur>John</nomJoueur>
+        <score>25000</score>
+    </carte>
+    <carte>
+        <nomCarte>Donjon Ténébreux</nomCarte>
+        <nomJoueur>Harry</nomJoueur>
+        <score>22000</score>
+    </carte>
+    <carte>
+        <nomCarte>Donjon Ténébreux</nomCarte>
+        <nomJoueur>Philippe</nomJoueur>
+        <score>16000</score>
+    </carte>
+    <carte>
+        <nomCarte>Marécage Sauvage</nomCarte>
+        <nomJoueur>John</nomJoueur>
+        <score>14000</score>
+    </carte>
+</cartes>
