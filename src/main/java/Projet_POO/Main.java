@@ -1,9 +1,12 @@
 package Projet_POO;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         XML xml = new XML();
         System.out.println(xml.afficherScore("Donjon Ténébreux"));
@@ -17,9 +20,7 @@ public class Main {
 
         Catcheur catcheur1 = new Catcheur("Charly");
 
-        Joueur joueur1 = new Joueur(100,10,10,50,50,"Jack");
-
-        // mise à niveau des mechants
+        /*// mise à niveau des mechants
         voleur1.setNiveauMechant(10);
         brigand1.setNiveauMechant(10);
         catcheur1.setNiveauMechant(10);
@@ -35,7 +36,7 @@ public class Main {
         joueur1.capacite.useEffect(joueur1);
         System.out.println(joueur1.toString());
 
-        xml.modifyXML("Donjon Ténébreux", 16000);
+        xml.modifyXML("Donjon Ténébreux", 16000);*/
 
 
 
@@ -52,7 +53,7 @@ public class Main {
         System.out.println(joueur1.toString());
         */
 
-        String brigand = "Brigand";
+       /* String brigand = "Brigand";
         String voleur = "Voleur";
         String catcheur = "Catcheur";
 
@@ -62,7 +63,7 @@ public class Main {
 
         ArrayList<String> ennemisSalle2 = new ArrayList<String>();
         ennemisSalle2.add(catcheur);
-
+*/
 
         /* trace de combat
 
@@ -82,9 +83,21 @@ public class Main {
         }
             */
 
+        Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Entrez le nom de votre héros : ");
+        String name = scanner.nextLine();
 
+        Joueur joueur1 = new Joueur(100,10,10,50,50, name);
+        List<String> pieces = new ArrayList<>();
+        pieces.add("Vous entrez dans le hall principal, une grande salle avec des chandeliers.");
+        pieces.add("Vous traversez un couloir étroit, sombre et inquiétant.");
+        pieces.add("Vous arrivez dans une pièce luxueuse, ornée de tapisseries anciennes.");
 
+        Carte carte1 = new Carte("Château", "Lille", pieces);
+
+        Partie partie = new Partie(joueur1, carte1);
+        partie.jouer();
 
     }
 }

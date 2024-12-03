@@ -2,12 +2,10 @@ package Projet_POO;
 
 public class Joueur extends Personnage{
 
-    String nom;
     Capacite capacite; 
 
     public Joueur(int pv, int force, int defense, int esquive, int critique, String nom){
-        super(pv, force, defense, esquive, critique);
-        this.nom = nom; 
+        super(nom, pv, force, defense, esquive, critique);
     }
 
     @Override

@@ -6,13 +6,17 @@ public class Voleur extends Personnage implements MechantInterface{
     int niveau;
 
     public Voleur(String nom){
-        super(2,2,2,3,3);
-        this.nom = nom; 
+        super(nom,2,2,2,3,3);
+        this.nom = nom;
     }
 
     @Override
     public String getNom(){
         return this.nom;
+    }
+
+    public int getNiveau() {
+        return niveau;
     }
 
     @Override
@@ -23,12 +27,13 @@ public class Voleur extends Personnage implements MechantInterface{
 
     @Override
     public Voleur setNiveauMechant(int niveau){
-        this.niveau = niveau; 
-        this.pv = 10 * niveau; 
-        this.force = 2 * niveau; 
-        this.defense = (float) (0.2 * niveau); 
-        this.esquive = 5 * niveau;
-        this.critique = 10 * niveau; 
+        this.niveau = niveau;
+        this.pvMax = 20 * niveau;
+        this.pv =this.pvMax;
+        this.force = 4 * niveau;
+        this.defense = (float) (0.25 * niveau);
+        this.esquive = 7 * niveau;
+        this.critique = 12 * niveau;
 
         Voleur voleur = new Voleur("voleur");
 

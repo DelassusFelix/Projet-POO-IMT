@@ -11,6 +11,7 @@ public class Logger {
     }
 
     public void log(String message) throws IOException {
+        System.out.println(message);
         writer.write(message + "\n");
         writer.flush();
     }

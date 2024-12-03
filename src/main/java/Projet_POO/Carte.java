@@ -1,34 +1,50 @@
 package Projet_POO;
 
+import java.util.List;
+
 public class Carte {
     private String nom;
     private String lieu;
-    private int longueur;
-    private int positionActuelle;
+    private List<String> pieces;
+    private int positionActuelle; // Position actuelle sur la carte
 
-    public Carte(String nom, String lieu, int longueur) {
+    public Carte(String nom, String lieu, List<String> pieces) {
         this.nom = nom;
         this.lieu = lieu;
-        this.longueur = longueur;
-        this.positionActuelle = 0; // Position de départ
+        this.pieces = pieces;
+        this.positionActuelle = 0; // Début au premier emplacement
     }
 
-    public void avancer() {
-        if (positionActuelle < longueur) {
-            positionActuelle++;
-        }
+    public String getNom() {
+        return nom;
     }
 
-    public boolean estArrivee() {
-        return positionActuelle == longueur;
+    public String getLieu() {
+        return lieu;
     }
 
     public int getPositionActuelle() {
         return positionActuelle;
     }
 
-    public String getNom() {
-        return nom;
+    public String getPieceActuelle() {
+        if (positionActuelle < pieces.size()) {
+            return pieces.get(positionActuelle);
+        }
+        return "Aucune pièce.";
+    }
+
+    public boolean estArrivee() {
+        return positionActuelle >= pieces.size() - 1;
+    }
+
+    public void avancer() {
+        if (positionActuelle < pieces.size() - 1) {
+            positionActuelle++;
+        }
+    }
+
+    public int getLongueur() {
+        return pieces.size();
     }
 }
-

@@ -1,8 +1,10 @@
 package Projet_POO;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Partie {
     private Joueur joueur;
@@ -10,72 +12,173 @@ public class Partie {
     private List<Personnage> ennemis;
     private Logger logger;
 
-    public Partie(Joueur hero, Carte carte, Logger logger) {
+    public Partie(Joueur hero, Carte carte) throws IOException {
         this.joueur = hero;
         this.carte = carte;
-        this.logger = logger;
+        this.logger = new Logger("partie");
         this.ennemis = new ArrayList<>();
     }
 
-    // Méthode pour générer des ennemis sur le parcours
-    public void genererEnnemis() {
+    public void genererEnnemis(int position) {
         Random rand = new Random();
-        for (int i = 0; i < carte.getPositionActuelle(); i++) {
-            if (rand.nextInt(10) < 4) { // 40% de chance d'ajouter un ennemi
-                Brigand ennemi = new Brigand();  // Ajoutez ici d'autres types d'ennemis
+        ennemis.clear();
+        int nbEnnemis = rand.nextInt(3) + 1;
+
+        for (int i = 0; i < nbEnnemis; i++) {
+            int chance = rand.nextInt(100);
+            if (chance < 20) {
+                Catcheur ennemi = new Catcheur("Catcheur");
+                ennemi.setNiveauMechant(position + 5);
+                ennemis.add(ennemi);
+            } else if (chance < 55) {
+                Brigand ennemi = new Brigand("Brigand");
+                ennemi.setNiveauMechant(position + 3);
+                ennemis.add(ennemi);
+            } else {
+                Voleur ennemi = new Voleur("Voleur");
+                ennemi.setNiveauMechant(position + 2);
                 ennemis.add(ennemi);
             }
         }
-    }
 
-    // Méthode pour gérer le combat entre le héros et un ennemi
-    public void combattre(Personnage ennemi) throws Exception {
-        logger.log("Le héros commence à combattre un ennemi.");
-
-        // Le héros attaque en premier
-        joueur.attaquer(ennemi);
-        if (!ennemi.estVivant()) {
-            logger.log("L'ennemi a été vaincu.");
-            ennemis.remove(ennemi);
-        } else {
-            // L'ennemi attaque ensuite
-            ennemi.attaquer(hero);
-            if (!joueur.estVivant()) {
-                logger.log("Le héros est mort.");
-                throw new Exception("Le héros est mort.");
-            }
+        System.out.println("Des ennemis vous attendent !");
+        for (Personnage ennemi : ennemis) {
+            System.out.println("- " + ennemi.getNom() + " (PV : " + ennemi.getPv() + ")");
         }
     }
 
-    // Méthode pour faire avancer le jeu
     public void jouer() throws Exception {
-        while (!carte.estArrivee() && joueur.estVivant()) {
-            // Avancer sur la carte
-            carte.avancer();
-            logger.log("Le héros avance. Position actuelle : " + carte.getPositionActuelle());
+        Scanner scanner = new Scanner(System.in);
 
-            // Le héros peut rencontrer des ennemis
-            if (ennemis.size() > 0) {
-                Personnage ennemi = ennemis.get(0); // Rencontre avec le premier ennemi
-                logger.log("Le héros rencontre un ennemi.");
-                combattre(ennemi);
+        System.out.println("Bienvenue dans l'aventure sur la carte \"" + carte.getNom() + "\" à \"" + carte.getLieu() + "\".");
+        System.out.println("Bonne chance !");
+        System.out.println("-------------------------------------------------");
+        scanner.nextLine();
+
+        while (!carte.estArrivee() && joueur.checkAlive()) {
+            System.out.println("\n=== Position : " + (carte.getPositionActuelle() + 1) + " / " + carte.getLongueur() + " ===");
+            System.out.println("Description : " + carte.getPieceActuelle());
+            System.out.println("1. Avancer");
+            System.out.println("2. Consulter l'état du héros");
+            System.out.print("> ");
+
+            int choix = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choix) {
+                case 1:
+                    // Avant d'avancer, on vérifie s'il reste des ennemis dans la pièce
+                    if (ennemis.isEmpty()) {
+                        carte.avancer();  // Le joueur peut avancer si tous les ennemis sont vaincus
+                        logger.log("Avance. Nouvelle position : " + carte.getPositionActuelle());
+                        if (!carte.estArrivee()) {
+                            genererEnnemis(carte.getPositionActuelle());
+                        }
+                        scanner.nextLine();
+                    } else {
+                        System.out.println("Tous les ennemis doivent être vaincus avant de pouvoir avancer !");
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("\n=== État du héros ===");
+                    System.out.println("PV : " + joueur.getPv());
+                    System.out.println("Force : " + joueur.getForce());
+                    scanner.nextLine();
+                    break;
+
+                default:
+                    System.out.println("Choix invalide !");
+                    continue;
             }
 
-            // Logique de victoire (si on atteint la fin de la carte)
-            if (carte.estArrivee()) {
-                logger.log("Le héros a atteint la fin de la carte et a gagné !");
+            if (!ennemis.isEmpty()) {
+                System.out.println("\n--- Un combat commence ! ---");
+                combat();
+            }
+
+            if (carte.estArrivee() && joueur.checkAlive()) {
+                System.out.println("Bravo ! Vous avez traversé \"" + carte.getNom() + "\" !");
+                scanner.nextLine();
                 break;
             }
         }
 
-        // Si le héros est mort avant la fin
-        if (!joueur.estVivant()) {
-            logger.log("Le héros a perdu !");
+        if (!joueur.checkAlive()) {
+            System.out.println("Game Over. Vous êtes mort.");
+            logger.log("Mort du héros.");
         }
-
-
-
     }
 
-    
+
+
+    private void combat() {
+        Scanner scanner = new Scanner(System.in);
+
+        // Boucle de combat tant que le joueur est en vie et qu'il y a des ennemis
+        while (joueur.checkAlive() && !ennemis.isEmpty()) {
+            Personnage ennemi = ennemis.get(0);  // Récupérer le premier ennemi de la liste
+
+            afficherBarresDeVie(ennemi);  // Affiche les barres de vie avant chaque action
+
+            System.out.println("1. Attaquer");
+            System.out.println("2. Fuir");
+            System.out.print("> ");
+            int choix = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choix == 1) {
+                joueur.attaque(ennemi);  // Attaque du joueur
+                if (!ennemi.checkAlive()) {
+                    System.out.println("Vous avez vaincu " + ennemi.getNom() + " !");
+                    ennemis.remove(ennemi);  // L'ennemi est vaincu, on le retire de la liste
+                } else {
+                    ennemi.attaque(joueur);  // Attaque de l'ennemi
+                }
+            } else if (choix == 2) {
+                if (Math.random() > 0.5) {
+                    System.out.println("Vous avez réussi à fuir !");
+                    scanner.nextLine();
+                    break;  // Si la fuite réussit, on sort du combat
+                } else {
+                    System.out.println("Échec de la fuite. L'ennemi attaque !");
+                    ennemi.attaque(joueur);  // L'ennemi attaque après l'échec de la fuite
+                    scanner.nextLine();
+                }
+            } else {
+                System.out.println("Choix invalide !");
+            }
+        }
+
+        if (!joueur.checkAlive()) {
+            System.out.println("Vous êtes mort !");
+            scanner.nextLine();
+        } else if (ennemis.isEmpty()) {
+            System.out.println("Vous avez vaincu tous les ennemis !");
+        }
+    }
+
+
+    private void afficherBarresDeVie(Personnage ennemi) {
+        int joueurPvMax = Math.max(joueur.getPvMax(), 1); // Empêche pvMax de valoir 0
+        int ennemiPvMax = Math.max(ennemi.getPvMax(), 1);
+
+        int joueurPvRestant = Math.max(joueur.getPv(), 0); // Empêche des valeurs négatives
+        int ennemiPvRestant = Math.max(ennemi.getPv(), 0);
+
+        // Calcul des proportions de barres de vie
+        int joueurBarLength = Math.min(50, joueurPvRestant * 50 / joueurPvMax);
+        int ennemiBarLength = Math.min(50, ennemiPvRestant * 50 / ennemiPvMax);
+
+        String joueurBarre = "[" + "=".repeat(joueurBarLength) + " ".repeat(50 - joueurBarLength) + "]";
+        String ennemiBarre = "[" + "=".repeat(ennemiBarLength) + " ".repeat(50 - ennemiBarLength) + "]";
+
+        // Affichage des barres de vie
+        System.out.println("\n=== Combat en cours ===");
+        System.out.println("Votre vie : " + joueurBarre + " " + joueurPvRestant + "/" + joueurPvMax);
+        System.out.println(ennemi.getNom() + " vie : " + ennemiBarre + " " + ennemiPvRestant + "/" + ennemiPvMax);
+    }
+
+
+
 }
