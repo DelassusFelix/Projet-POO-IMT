@@ -1,6 +1,5 @@
 package Projet_POO;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,8 +10,8 @@ public class Main {
         XML xml = new XML();
         System.out.println(xml.afficherScore("Donjon Ténébreux"));
 
-        CPotion potion = new CPotion();
-        CGrosseEpee degat = new CGrosseEpee();
+        Potion potion = new Potion();
+        GrosseEpee degat = new GrosseEpee();
 
         Voleur voleur1 = new Voleur("Victor");
 
