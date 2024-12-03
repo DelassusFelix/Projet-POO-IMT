@@ -26,17 +26,18 @@ public class Partie {
 
         for (int i = 0; i < nbEnnemis; i++) {
             int chance = rand.nextInt(100);
+            int niveau = rand.nextInt(3) + 1;
             if (chance < 20) {
                 Catcheur ennemi = new Catcheur("Catcheur");
-                ennemi.setNiveauMechant(position + 5);
+                ennemi.setNiveauMechant(position + niveau);
                 ennemis.add(ennemi);
             } else if (chance < 55) {
                 Brigand ennemi = new Brigand("Brigand");
-                ennemi.setNiveauMechant(position + 3);
+                ennemi.setNiveauMechant(position + niveau);
                 ennemis.add(ennemi);
             } else {
                 Voleur ennemi = new Voleur("Voleur");
-                ennemi.setNiveauMechant(position + 2);
+                ennemi.setNiveauMechant(position + niveau);
                 ennemis.add(ennemi);
             }
         }
