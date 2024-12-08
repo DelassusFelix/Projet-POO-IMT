@@ -3,7 +3,7 @@ package Projet_POO;
 public class CPotion extends Capacite implements CapaciteActive {
 
     public CPotion(){
-        
+        super("Vous utilisez une potion !");
     }
 
     /* 

@@ -3,7 +3,8 @@ package Projet_POO;
 public class CGrosseEpee extends Capacite implements CapacitePassive {
 
     public CGrosseEpee(){
-        
+        super("Voici une meilleure épée !");
+
     }
 
     /* 

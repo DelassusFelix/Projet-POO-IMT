@@ -4,23 +4,17 @@ import java.util.List;
 
 public class Carte {
     private String nom;
-    private String lieu;
     private List<String> pieces;
     private int positionActuelle; // Position actuelle sur la carte
 
-    public Carte(String nom, String lieu, List<String> pieces) {
+    public Carte(String nom, List<String> pieces) {
         this.nom = nom;
-        this.lieu = lieu;
         this.pieces = pieces;
         this.positionActuelle = 0; // Début au premier emplacement
     }
 
     public String getNom() {
         return nom;
-    }
-
-    public String getLieu() {
-        return lieu;
     }
 
     public int getPositionActuelle() {
@@ -35,7 +29,7 @@ public class Carte {
     }
 
     public boolean estArrivee() {
-        return positionActuelle >= pieces.size() - 1;
+        return positionActuelle > pieces.size() - 1;
     }
 
     public void avancer() {

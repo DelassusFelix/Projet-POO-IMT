@@ -1,5 +1,7 @@
 package Projet_POO;
 
+import java.util.Scanner;
+
 public class Personnage {
     String nom;
     int pv; // Points de vie actuels
@@ -13,7 +15,7 @@ public class Personnage {
     public Personnage(String nom, int pv, int force, float defense, int esquive, int critique) {
         this.nom = nom;
         this.pv = pv;
-        this.pvMax = pv; // Initialisation des PV maximums à la création
+        this.pvMax = pv;
         this.force = force;
         this.defense = defense;
         this.esquive = esquive;
@@ -109,28 +111,32 @@ public class Personnage {
 
     public void attaque(Personnage defenseur) {
         float degat = 0;
-        int randomIntCrit = (int) (Math.random() * 101);
 
-        // Vérification si c'est un coup critique
-        if (this.getCritique() > randomIntCrit) {
-            degat = ((this.getForce() * 2) / defenseur.getDefense());
-            degat = Math.round(degat);
-            System.out.println("C'est un coup critique de " + (this instanceof Joueur ? "vous" : this.getNom()) + " ! " + degat + " dégâts infligés !");
-        } else {
-            degat = this.getForce() / defenseur.getDefense();
-            degat = Math.round(degat);
-            System.out.println((this instanceof Joueur ? "Vous" : this.getNom()) + " inflige " + degat + " dégâts !");
-        }
-
-        // Vérification de l'esquive
+        // Vérification de l'esquive avant toute chose
         int randomIntEsqu = (int) (Math.random() * 101);
         if (defenseur.getEsquive() > randomIntEsqu) {
-            System.out.println("Esquive réussie !");
-        } else {
-            // Appliquer les dégâts si l'esquive échoue
-            float nouveauPV = defenseur.getPv() - degat;
-            defenseur.setPv(Math.round(nouveauPV));
+            System.out.println((defenseur instanceof Joueur ? "Vous esquivez" : (defenseur.getNom() + " esquive")) + " l'attaque !");
+            return; // Sortie anticipée si esquive réussie
         }
+
+        // Calcul des dégâts
+        int randomIntCrit = (int) (Math.random() * 101);
+        if (this.getCritique() > randomIntCrit) {
+            // Coup critique
+            degat = ((this.getForce() * 2) / Math.max(1, defenseur.getDefense())); // Défense minimale à 1
+            degat = Math.round(degat);
+            System.out.println("Coup critique ! " + (this instanceof Joueur ? "Vous infligez " : (this.getNom() + " inflige ")) + degat + " dégâts !");
+        } else {
+            // Attaque normale
+            degat = this.getForce() / Math.max(1, defenseur.getDefense()); // Défense minimale à 1
+            degat = Math.round(degat);
+            System.out.println((this instanceof Joueur ? "Vous infligez " : (this.getNom() + " inflige ")) + degat + " dégâts !");
+        }
+
+        // Réduction des PV du défenseur
+        float nouveauPV = defenseur.getPv() - degat;
+        defenseur.setPv(Math.max(0, Math.round(nouveauPV))); // Assurez-vous que les PV ne descendent pas sous 0
     }
+
 
 }

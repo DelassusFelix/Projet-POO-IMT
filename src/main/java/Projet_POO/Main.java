@@ -10,14 +10,36 @@ public class Main {
         XML xml = new XML();
         System.out.println(xml.afficherScore("Donjon Ténébreux"));
 
+
+        List<String> piecesCarteImt = new ArrayList<>();
+        piecesCarteImt.add("Vous arrivez sur le parking de l'IMT, prenez garde.");
+        piecesCarteImt.add("Vous êtes devant l'amphi Byron, attention aux ennemis.");
+        piecesCarteImt.add("Vous arrivez devant la machine à café, soyez vigilants.");
+        piecesCarteImt.add("Vous y êtes, l'ultime salle des profs !");
+        Carte imt = new Carte("L'IMT Nord Europe", piecesCarteImt);
+
+        List<String> piecesCarteCrous = new ArrayList<>();
+        piecesCarteCrous.add("Restez alertes, vous entrez dans le self.");
+        piecesCarteCrous.add("Vous arrivez au buffet, méfiez vous.");
+        piecesCarteCrous.add("Vous êtes à la plonge, gardez l'oeil.");
+        piecesCarteCrous.add("Vous y êtes, voici le refectoire !");
+        Carte crous = new Carte("Le CROUS ténébreux", piecesCarteCrous);
+
+        List<String> piecesCarteBu = new ArrayList<>();
+        piecesCarteBu.add("Soyez prudents, vous entrez dans la BU.");
+        piecesCarteBu.add("Voici la bibliothèque, soyez sur le qui-vive.");
+        piecesCarteBu.add("Vous entrez dans la salle informatique, gardez l'oeil ouvert.");
+        piecesCarteBu.add("Vous y êtes, le toit de la BU !");
+        Carte bibliotheque = new Carte("La BU enchantée", piecesCarteBu);
+
+        List<Carte> cartesDispo = new ArrayList<Carte>();
+        cartesDispo.add(imt);
+        cartesDispo.add(crous);
+        cartesDispo.add(bibliotheque);
+
+
         Potion potion = new Potion();
         GrosseEpee degat = new GrosseEpee();
-
-        Voleur voleur1 = new Voleur("Victor");
-
-        Brigand brigand1 = new Brigand("Bruno");
-
-        Catcheur catcheur1 = new Catcheur("Charly");
 
         /*// mise à niveau des mechants
         voleur1.setNiveauMechant(10);
@@ -36,9 +58,6 @@ public class Main {
         System.out.println(joueur1.toString());
 
         xml.modifyXML("Donjon Ténébreux", 16000);*/
-
-
-
 
 
         /* a conserver dans ce commit si besoin, premiere version des capacités.
@@ -87,15 +106,17 @@ public class Main {
         System.out.println("Entrez le nom de votre héros : ");
         String name = scanner.nextLine();
 
-        Joueur joueur1 = new Joueur(100,10,10,50,50, name);
-        List<String> pieces = new ArrayList<>();
-        pieces.add("Vous entrez dans le hall principal, une grande salle avec des chandeliers.");
-        pieces.add("Vous traversez un couloir étroit, sombre et inquiétant.");
-        pieces.add("Vous arrivez dans une pièce luxueuse, ornée de tapisseries anciennes.");
+        System.out.println("\nSeléctionnez une carte : ");
+        final int[] index = {1};
+        cartesDispo.forEach(carte -> {
+            System.out.println(index[0] + ": " + carte.getNom());
+            index[0]++;
+        });
 
-        Carte carte1 = new Carte("Château", "Lille", pieces);
+        int numCarte = scanner.nextInt();
+        Joueur joueur1 = new Joueur(10,10,10,50,50, name);
 
-        Partie partie = new Partie(joueur1, carte1);
+        Partie partie = new Partie(joueur1, cartesDispo.get(numCarte-1));
         partie.jouer();
 
     }
