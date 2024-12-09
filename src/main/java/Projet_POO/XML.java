@@ -84,7 +84,7 @@ public class XML {
 
     public String afficherScore(Carte carteArg){
 
-        System.out.print("=== Tableau des scores ===\n");
+        System.out.print("\n=== Tableau des scores ===\n");
         System.out.print("== " + carteArg.getNom() + " ==\n");
 
         try {
@@ -115,7 +115,7 @@ public class XML {
                   if (nomCarte.equals(carteArg.getNom())) {
                     String nomJoueur = carteElement.getElementsByTagName("nomJoueur").item(0).getTextContent();
                     String scoreJoueur = carteElement.getElementsByTagName("score").item(0).getTextContent();
-                    affichage = affichage + "Joueur : " + nomJoueur + "\n" + "score : " + scoreJoueur + "\n"; 
+                    affichage = affichage + "Joueur : " + nomJoueur + "\n" + "score : " + scoreJoueur + "\n\n";
                   }
                 } 
             }

@@ -25,14 +25,4 @@ public class GrosseEpee extends Utilitaire implements CapacitePassiveInterface {
     public void afficher(){
         System.out.println(this.nom + ": \n" + this.label);
     }
-
-    @Override
-    public String getNom(){
-        return this.nom;
-    };
-
-    @Override
-    public String getLabel(){
-        return this.label;
-    }
 }

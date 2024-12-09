@@ -1,11 +1,14 @@
 package Projet_POO;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+
+        Logger logger = new Logger("Partie");
         XML xml = new XML();
 
         List<String> piecesCarteImt = new ArrayList<>();
@@ -13,7 +16,7 @@ public class Main {
         piecesCarteImt.add("Vous êtes devant l'amphi Byron, attention aux ennemis.");
         piecesCarteImt.add("Vous arrivez devant la machine à café, soyez vigilants.");
         piecesCarteImt.add("Vous y êtes, l'ultime salle des profs !");
-        Carte imt = new Carte("L'IMT Nord Europe", piecesCarteImt);
+        Carte imt = new Carte("L'IMT Nord Horror", piecesCarteImt);
 
         List<String> piecesCarteCrous = new ArrayList<>();
         piecesCarteCrous.add("Restez alertes, vous entrez dans le self.");
@@ -34,17 +37,22 @@ public class Main {
         cartesDispo.add(crous);
         cartesDispo.add(bibliotheque);
 
-
-
-        // Scanner pour interaction utilisateur
         Scanner scanner = new Scanner(System.in);
 
-        // Demande le nom du héros
-        System.out.println("Entrez le nom de votre héros : ");
+        logger.log("\n" +
+                "██╗███╗   ███╗████████╗    ████████╗██╗  ██╗███████╗███╗   ███╗     █████╗ ██╗     ██╗     \n" +
+                "██║████╗ ████║╚══██╔══╝    ╚══██╔══╝██║  ██║██╔════╝████╗ ████║    ██╔══██╗██║     ██║     \n" +
+                "██║██╔████╔██║   ██║          ██║   ███████║█████╗  ██╔████╔██║    ███████║██║     ██║     \n" +
+                "██║██║╚██╔╝██║   ██║          ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║     \n" +
+                "██║██║ ╚═╝ ██║   ██║          ██║   ██║  ██║███████╗██║ ╚═╝ ██║    ██║  ██║███████╗███████╗\n" +
+                "╚═╝╚═╝     ╚═╝   ╚═╝          ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚══════╝\n");
+
+        logger.log("Bienvenue jeune aventurier !");
+
+        logger.log("\nComment vous appellez vous ? : ");
         String name = scanner.nextLine();
 
-        // Sélection de la carte
-        System.out.println("\nSélectionnez une carte : ");
+        logger.log("\nSeléctionnez une carte : ");
         final int[] index = {1};
         cartesDispo.forEach(carte -> {
             System.out.println(index[0] + ": " + carte.getNom());
@@ -52,75 +60,71 @@ public class Main {
         });
 
         int numCarte = scanner.nextInt();
-        Carte carteChoisie = cartesDispo.get(numCarte - 1);
+        System.out.println(xml.afficherScore(cartesDispo.get(numCarte-1)));
+        scanner.nextLine();
 
-        // Création du joueur
-        Joueur joueur1 = new Joueur(10, 10, 10, 50, 50, name);
+        Joueur joueur1 = new Joueur(100,10,10,50,50, name);
+        ChoisirLaCapacite(joueur1, logger);
 
-        // Choisir une capacité
-        Utilitaire capaciteChoisie = ChoisirLaCapacites();
-        if (capaciteChoisie != null) {
-            joueur1.setCapacite(capaciteChoisie); // Ajout de la capacité au joueur
-        }
-
-        // Démarrer une partie
-        Partie partie = new Partie(joueur1, carteChoisie);
+        Partie partie = new Partie(joueur1, cartesDispo.get(numCarte-1));
         partie.jouer();
+
     }
 
-    public static Utilitaire ChoisirLaCapacites() {
-        List<CapaciteActiveInterface> ListeCapacitesActives = new ArrayList<>();
-        List<CapacitePassiveInterface> ListeCapacitesPassives = new ArrayList<>();
+    public static void ChoisirLaCapacite(Joueur joueur, Logger logger) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        List<Utilitaire> ListeCapacitesActive = new ArrayList<>();
+        List<Utilitaire> ListeCapacitesPassives = new ArrayList<>();
 
-        // Création des instances des capacités
         CasqueChantier casqueChantier = new CasqueChantier();
         CocktailMolotov cocktailMolotov = new CocktailMolotov();
         GilletParBalle gilletParBalle = new GilletParBalle();
-        GrosseEpee grosseEpee = new GrosseEpee();
+        GrosseEpee grosseEpee = new GrosseEpee(); 
         LameAiguise lameAiguise = new LameAiguise();
         PasDePlume pasDePlume = new PasDePlume();
-        Potion potion = new Potion();
+        Potion potion = new Potion(); 
 
-        // Ajout des capacités à leurs listes respectives
-        ListeCapacitesActives.add(casqueChantier);
-        ListeCapacitesActives.add(cocktailMolotov);
-        ListeCapacitesActives.add(lameAiguise);
-        ListeCapacitesActives.add(potion);
+        ListeCapacitesActive.add(casqueChantier);
+        ListeCapacitesActive.add(cocktailMolotov);
+        ListeCapacitesActive.add(lameAiguise);
+        ListeCapacitesActive.add(potion); 
 
         ListeCapacitesPassives.add(gilletParBalle);
         ListeCapacitesPassives.add(grosseEpee);
         ListeCapacitesPassives.add(pasDePlume);
 
-        // Affichage des capacités
-        System.out.println("\n=== Capacités Actives ===");
-        int id = 1;
-        for (CapaciteActiveInterface capacite : ListeCapacitesActives) {
-            System.out.println(id++ + ". " + capacite.getNom() + " - " + capacite.getLabel());
+        scanner.nextLine();
+        int indice=1; 
+        logger.log("== Capacité actives ==");
+        for (Utilitaire capacite : ListeCapacitesActive){
+            logger.log(indice + ". " + capacite.getNom() + " - " + capacite.getLabel());
+            indice += 1;
         }
 
-        System.out.println("\n=== Capacités Passives ===");
-        for (CapacitePassiveInterface capacite : ListeCapacitesPassives) {
-            System.out.println(id++ + ". " + capacite.getNom() + " - " + capacite.getLabel());
+        logger.log("\n== Capacité passives ==");
+        for (Utilitaire capacite : ListeCapacitesPassives){
+            logger.log(indice + ". " + capacite.getNom() + " - " + capacite.getLabel());
+            indice += 1;
         }
+        logger.log("\nQuelle capacité souhaitez vous prendre : ");
+        logger.log(">");
+        int numCapacite = scanner.nextInt();
 
-        // Demander à l'utilisateur de faire un choix
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("\nEntrez le numéro de la capacité que vous souhaitez sélectionner : ");
-        int choix = scanner.nextInt();
-        scanner.nextLine(); // Consommer la ligne restante
-
-        // Valider le choix et retourner l'objet correspondant
-        if (choix > 0 && choix <= ListeCapacitesActives.size()) {
-            CapaciteActiveInterface capaciteChoisie = ListeCapacitesActives.get(choix - 1);
-            System.out.println("Vous avez sélectionné l'active : " + capaciteChoisie.getNom());
-            return (Utilitaire) capaciteChoisie;
-        } else if (choix > ListeCapacitesActives.size() && choix <= ListeCapacitesActives.size() + ListeCapacitesPassives.size()) {
-            CapacitePassiveInterface capaciteChoisie = ListeCapacitesPassives.get(choix - ListeCapacitesActives.size() - 1);
-            System.out.println("Vous avez sélectionné la passive : " + capaciteChoisie.getNom());
-            return (Utilitaire) capaciteChoisie;
+        if (numCapacite > 0 && numCapacite <= ListeCapacitesActive.size()){
+            Utilitaire capaciteChoisie = ListeCapacitesActive.get(numCapacite - 1);
+            logger.log("Vous avez choisi la capacité active : " + capaciteChoisie.getNom());
+            joueur.setCapacite(capaciteChoisie);
+        } else if ( 
+            numCapacite > ListeCapacitesActive.size() &&
+            numCapacite <= ListeCapacitesActive.size() + ListeCapacitesPassives.size()
+            ) {
+            Utilitaire capaciteChoisie = ListeCapacitesPassives.get(numCapacite - ListeCapacitesActive.size() - 1);
+            logger.log("Vous avez choisi la capacité passive : " + capaciteChoisie.getNom());
+            joueur.setCapacite(capaciteChoisie);
+            joueur.capacite.useEffect(joueur);
         } else {
-            System.out.println("Choix invalide, aucune capacité sélectionnée.");
-            return null;
-        }
+            logger.log("Choix de capacité invalide");
+        }  
+
     }
 }

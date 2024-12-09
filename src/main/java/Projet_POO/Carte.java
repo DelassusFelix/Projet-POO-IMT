@@ -29,13 +29,11 @@ public class Carte {
     }
 
     public boolean estArrivee() {
-        return positionActuelle > pieces.size() - 1;
+        return positionActuelle >= pieces.size();
     }
 
     public void avancer() {
-        if (positionActuelle < pieces.size() - 1) {
             positionActuelle++;
-        }
     }
 
     public int getLongueur() {

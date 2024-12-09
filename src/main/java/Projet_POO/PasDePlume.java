@@ -8,22 +8,12 @@ public class PasDePlume extends Utilitaire implements CapacitePassiveInterface {
 
     @Override
     public void useEffect(Personnage personnage){
-        System.out.println("on a utilisé la capacite passive pas de plume");
+        System.out.println("Capacité Pas de plume activée !");
         personnage.esquive = personnage.esquive * 2; 
 
     }
 
     public void afficher(){
         System.out.println(this.nom + ": \n" + this.label);
-    }
-
-    @Override
-    public String getLabel(){
-        return this.label;
-    }
-
-    @Override
-    public String getNom(){
-        return this.nom;
     }
 }

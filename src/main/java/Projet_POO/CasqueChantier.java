@@ -2,6 +2,10 @@ package Projet_POO;
 
 public class CasqueChantier extends Utilitaire implements CapaciteActiveInterface {
 
+    public boolean isDisponible = true;
+
+    public int count = 3; 
+
     public CasqueChantier(){
         super("Enfile ton casque ! Double ta défense pendant 3 attaques", "Casque de Chantier");    
     }
@@ -19,16 +23,16 @@ public class CasqueChantier extends Utilitaire implements CapaciteActiveInterfac
     }
 
     @Override
-    public String getNom(){
-        return this.nom;
+    public void setDisponible(boolean dispo){
+        this.isDisponible = dispo; 
+    }
+
+    public void afficher(){
+        System.out.println(this.nom + ": \n" + this.label);
     }
 
     @Override
-    public String getLabel(){
-        return this.label;
-    }
-    
-    public void afficher(){
-        System.out.println(this.nom + ": \n" + this.label);
+    public int getCount(){
+        return this.count; 
     }
 }

@@ -21,16 +21,6 @@ public class GilletParBalle extends Utilitaire implements CapacitePassiveInterfa
 
     }
 
-    @Override
-    public String getNom(){
-        return this.nom;
-    };
-
-    @Override
-    public String getLabel(){
-        return this.label;
-    }
-
     public void afficher(){
         System.out.println(this.nom + ": \n" + this.label);
     }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><cartes>
     <carte>
         <nomCarte>L'IMT Nord Europe</nomCarte>
-        <nomJoueur>test3</nomJoueur>
-        <score>3</score>
+        <nomJoueur>Félix</nomJoueur>
+        <score>115</score>
     </carte>
     <carte>
         <nomCarte>L'IMT Nord Europe</nomCarte>
@@ -26,13 +26,13 @@
     </carte>
     <carte>
         <nomCarte>La BU enchantée</nomCarte>
-        <nomJoueur>test1</nomJoueur>
-        <score>1</score>
+        <nomJoueur>Félix</nomJoueur>
+        <score>510</score>
     </carte>
     <carte>
         <nomCarte>La BU enchantée</nomCarte>
-        <nomJoueur>test1</nomJoueur>
-        <score>1</score>
+        <nomJoueur>Félix</nomJoueur>
+        <score>380</score>
     </carte>
     <carte>
         <nomCarte>La BU enchantée</nomCarte>

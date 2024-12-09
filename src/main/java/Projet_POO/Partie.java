@@ -76,21 +76,21 @@ public class Partie {
         boolean affichPosition = true;
 
         scanner.nextLine();
-        System.out.println("\nBienvenue dans l'aventure sur la carte \"" + carte.getNom() + "\".");
-        System.out.println("Bonne chance !");
-        System.out.println("-------------------------------------------------");
+        logger.log("\nBienvenue dans l'aventure sur la carte \"" + carte.getNom() + "\".");
+        logger.log("Bonne chance !");
+        logger.log("-------------------------------------------------");
 
         while (!carte.estArrivee() && joueur.checkAlive()) {
             scanner.nextLine(); // Pause pour permettre au joueur d'interagir
             if (affichPosition) {
-                System.out.println("\n=== Position : " + (carte.getPositionActuelle() + 1) + " / " + carte.getLongueur() + " ===");
-                System.out.println(carte.getPieceActuelle());
+                logger.log("\n=== Position : " + (carte.getPositionActuelle() + 1) + " / " + carte.getLongueur() + " ===");
+                logger.log(carte.getPieceActuelle());
             }
             affichPosition = false;
 
-            System.out.println(firstRound ? "\n1. Lancer la partie." : "\n1. Salle suivante");
-            System.out.println("2. Consulter l'état du héros");
-            System.out.println("3. Acheter un objet");
+            logger.log(firstRound ? "\n1. Lancer la partie." : "\n1. Salle suivante");
+            logger.log("2. Consulter l'état du héros");
+            logger.log("3. Acheter un objet");
             System.out.print("> ");
 
             int choix = scanner.nextInt();
@@ -99,17 +99,18 @@ public class Partie {
                 case 1:
                     if (ennemis.isEmpty()) {
                         if (!firstRound) {
-                            carte.avancer();
-                            System.out.println("\n=== Position : " + (carte.getPositionActuelle() + 1) + " / " + carte.getLongueur() + " ===");
-                            logger.log(carte.getPieceActuelle());
-                        }
-                        if (!carte.estArrivee()) {
-                            genererEnnemis(carte.getPositionActuelle());
+                            // On s'assure que le joueur peut avancer vers la salle suivante seulement si la partie n'est pas terminée
+                            if (!carte.estArrivee()) {
+                                carte.avancer();
+                                logger.log("\n=== Position : " + (carte.getPositionActuelle() + 1) + " / " + carte.getLongueur() + " ===");
+                                logger.log(carte.getPieceActuelle());
+                                genererEnnemis(carte.getPositionActuelle());
+                            }
                         }
                         firstRound = false;
                         scanner.nextLine(); // Pour éviter de sauter la saisie suivante
                     } else {
-                        System.out.println("Tous les ennemis doivent être vaincus avant de pouvoir avancer !");
+                        logger.log("Tous les ennemis doivent être vaincus avant de pouvoir avancer !");
                     }
                     break;
 
@@ -117,28 +118,37 @@ public class Partie {
                     afficherEtatHeros();
                     break;
 
-                case 3: 
-                    System.out.println("\n=== Bienvenue dans la boutique ===");
-                    System.out.println("\nCrédits : " + joueur.getScore());
-                    System.out.println("Que voulez-vous acheter " + joueur.getNom() + " ?");
+                case 3:
+                    logger.log("\n=== Bienvenue dans la boutique ===");
+                    logger.log("\nQue voulez-vous acheter " + joueur.getNom() + " ?");
+                    logger.log("Crédits : " + joueur.getScore() + "\n");
+                    logger.log("0. Quitter la boutique");
+                    logger.log("1. Petite potion (prix : " + petitePotion.getCout() + ")");
 
-                    System.out.println("1. Petite potion (prix : " + petitePotion.getCout() + ")");
                     choix = scanner.nextInt();
                     scanner.nextLine();
 
-                    if (choix == 1) {
-                        if (joueur.getScore() > petitePotion.getCout()){
-                            joueur.addObjet(petitePotion); 
-                            joueur.setScore(joueur.getScore() - petitePotion.getCout()); 
-                            System.out.println("Achat effecuté avec succès");
-                        } else {
-                            System.out.println("Vous n'avez pas assez de crédits.");
-                        }
+                    if (choix == 0) {
+                        logger.log("Vous quittez la boutique.");
+                        break; // Sortie de la boutique
                     }
-                    break; 
+
+                    if (choix == 1) {
+                        if (joueur.getScore() > petitePotion.getCout()) {
+                            joueur.addObjet(petitePotion);
+                            joueur.setScore(joueur.getScore() - petitePotion.getCout());
+                            logger.log("Achat effectué avec succès !");
+                        } else {
+                            logger.log("Vous n'avez pas assez de crédits.");
+                        }
+                    } else {
+                        logger.log("Choix invalide !");
+                    }
+                    break;
+
 
                 default:
-                    System.out.println("Choix invalide !");
+                    logger.log("Choix invalide !");
             }
 
             // Combats avec les ennemis
@@ -158,7 +168,7 @@ public class Partie {
 
             // Conditions de victoire
             if (carte.estArrivee() && joueur.checkAlive()) {
-                System.out.println("Bravo ! Vous avez traversé \"" + carte.getNom() + "\" !");
+                logger.log("Bravo ! Vous avez traversé \"" + carte.getNom() + "\" !");
                 xml.modifyXML(carte, joueur.getScore(), joueur.getNom());
                 scanner.nextLine();
                 break;
@@ -170,15 +180,25 @@ public class Partie {
     /**
      * Affiche l'état actuel du héros, incluant ses points de vie, sa force, et ses statistiques.
      */
-    private void afficherEtatHeros() {
-        System.out.println("\n=== État du héros ===");
-        System.out.println("PV : " + joueur.getPv() + " / " + joueur.getPvMax());
-        System.out.println("Force : " + joueur.getForce());
-        System.out.println("Coup critique : " + joueur.getCritique() + " %");
-        System.out.println("Défense : " + joueur.getDefense());
-        System.out.println("Esquive : " + joueur.getEsquive() + " %");
+    private void afficherEtatHeros() throws IOException {
+        logger.log("\n=== État du héros ===");
+        logger.log("PV : " + joueur.getPv() + " / " + joueur.getPvMax());
+        logger.log("Force : " + joueur.getForce());
+        logger.log("Coup critique : " + joueur.getCritique() + " %");
+        logger.log("Défense : " + joueur.getDefense());
+        logger.log("Esquive : " + joueur.getEsquive() + " %");
         joueur.showObjets();
+        logger.log("\n\n");
     }
+
+
+    /**
+     * Supprime les ennemis morts (PV <= 0) de la liste des ennemis.
+     */
+    private void nettoyerEnnemis() {
+        ennemis.removeIf(ennemi -> !ennemi.checkAlive());
+    }
+
 
     /**
      * Permet au joueur de choisir un ennemi parmi ceux disponibles.
@@ -186,22 +206,30 @@ public class Partie {
      * @param scanner l'objet Scanner pour la saisie utilisateur
      * @return l'ennemi sélectionné ou null si le choix est invalide
      */
-    private Personnage choisirEnnemi(Scanner scanner) {
+    private Personnage choisirEnnemi(Scanner scanner) throws IOException {
         if (!joueur.checkAlive()) {
-            System.out.println("Vous êtes mort. La partie est terminée.");
+            logger.log("Vous êtes mort. La partie est terminée.");
             return null;
         }
 
-        System.out.println("\n=== Choisissez un ennemi à combattre ===");
+        nettoyerEnnemis();
+
+        if (ennemis.isEmpty()) {
+            logger.log("Tous les ennemis ont été vaincus !");
+            return null;
+        }
+
+
+        logger.log("\n=== Choisissez un ennemi à combattre ===");
         for (int i = 0; i < ennemis.size(); i++) {
             MechantInterface ennemi = (MechantInterface) ennemis.get(i); // cast
-            System.out.println((i + 1) + ". " + ennemi.getNom() + " (lvl: " + ennemi.getNiveau() + " ,PV: " + ennemi.getPv() + ")");
+            logger.log((i + 1) + ". " + ennemi.getNom() + " (lvl: " + ennemi.getNiveau() + " ,PV: " + ennemi.getPv() + ")");
         }
         System.out.print("> ");
         int choix = scanner.nextInt();
 
         if (choix < 1 || choix > ennemis.size()) {
-            System.out.println("Choix invalide !");
+            logger.log("Choix invalide !");
             return null;
         }
 
@@ -214,64 +242,86 @@ public class Partie {
      *
      * @param ennemi l'ennemi à combattre
      */
-    private void combat(Personnage ennemi) {
+    private void combat(Personnage ennemi) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
         int scoreGagne = ennemi.getPv();
 
+        int countCapacite = 0;
+        boolean capaciteActive = false;
+
         while (joueur.checkAlive() && ennemi.checkAlive()) {
-        
+
             afficherBarresDeVie(ennemi);
 
-            System.out.println("1. Attaquer");
-            System.out.println("2. Fuir");
-            System.out.println("3. Utiliser votre capacité");
-            System.out.println("4. Utiliser un objet");
+            // Afficher les options disponibles
+            logger.log("1. Attaquer");
+            logger.log("2. Fuir");
+            logger.log("3. Utiliser un objet");
+            if (joueur.capacite.isDisponible() && countCapacite < joueur.capacite.getCount()) {
+                logger.log("4. Utiliser votre capacité");
+            }
+
+
             System.out.print("> ");
             int choix = scanner.nextInt();
             scanner.nextLine(); // Pause nécessaire
 
             if (choix == 1) {
                 joueur.attaque(ennemi);
+
+                if (capaciteActive) {
+                    if (countCapacite < joueur.capacite.getCount()) {
+                        countCapacite += 1;
+                    } else {
+                        capaciteActive = false;
+                        joueur.capacite.reverseEffect(joueur);
+                        joueur.capacite.setDisponible(false);
+                    }
+                }
+
                 if (!ennemi.checkAlive()) {
-                    System.out.println("Vous avez vaincu " + ennemi.getNom() + " !"); 
-                    System.out.println("Vous avez gagnez : " + scoreGagne + " point de score");
-                    joueur.setScore(joueur.getScore() + scoreGagne); 
+                    logger.log("Vous avez vaincu " + ennemi.getNom() + " !");
+                    logger.log("Vous avez gagné : " + scoreGagne + " crédits");
+                    joueur.setScore(joueur.getScore() + scoreGagne);
                     ennemis.remove(ennemi);
-                    System.out.println("Vous avez vaincu " + ennemi.getNom() + " !");
+                    logger.log("Vous avez vaincu " + ennemi.getNom() + " !");
                     break;
                 } else {
                     ennemi.attaque(joueur);
                     if (!joueur.checkAlive()) {
-                        System.out.println("Vous êtes mort pendant le combat.");
+                        logger.log("Vous êtes mort pendant le combat.");
                         break; // Sort du combat
                     }
                 }
             } else if (choix == 2) {
                 if (Math.random() > 0.5) {
-                    System.out.println("Vous avez réussi à fuir !");
+                    logger.log("Vous avez réussi à fuir !");
                     break;
                 } else {
-                    System.out.println("Échec de la fuite. L'ennemi attaque !");
+                    logger.log("Échec de la fuite. L'ennemi attaque !");
                     ennemi.attaque(joueur);
                     if (!joueur.checkAlive()) {
-                        System.out.println("Vous êtes mort pendant le combat.");
+                        logger.log("Vous êtes mort pendant le combat.");
                         break;
                     }
                 }
+            } else if (choix == 4 && joueur.capacite.isDisponible() && countCapacite < joueur.capacite.getCount()) {
+                capaciteActive = true;
+                if (joueur.capacite instanceof CapaciteAffectantEnnemi) {
+                    joueur.capacite.useEffect(ennemi);
+                } else {
+                    joueur.capacite.useEffect(joueur);
+                }
+                countCapacite += 1;
             } else if (choix == 3) {
-                joueur.capacite.useEffect(joueur);
-            } else if (choix == 4) {
-                System.out.println(joueur.showObjets()); 
+                logger.log(joueur.showObjets());
                 joueur.useObjets();
             } else {
-                System.out.println("Choix invalide !");
+                logger.log("Choix invalide !");
             }
         }
     }
-
-
-
 
 
 
@@ -280,7 +330,7 @@ public class Partie {
      *
      * @param ennemi l'ennemi en cours de combat
      */
-    private void afficherBarresDeVie(Personnage ennemi) {
+    private void afficherBarresDeVie(Personnage ennemi) throws IOException {
         int joueurPvMax = Math.max(joueur.getPvMax(), 1);
         int ennemiPvMax = Math.max(ennemi.getPvMax(), 1);
 
@@ -293,7 +343,7 @@ public class Partie {
         String joueurBarre = "[" + "=".repeat(joueurBarLength) + " ".repeat(50 - joueurBarLength) + "]";
         String ennemiBarre = "[" + "=".repeat(ennemiBarLength) + " ".repeat(50 - ennemiBarLength) + "]";
 
-        System.out.println("\nVotre vie : " + joueurBarre + " " + joueurPvRestant + "/" + joueurPvMax);
-        System.out.println(ennemi.getNom() + " vie : " + ennemiBarre + " " + ennemiPvRestant + "/" + ennemiPvMax);
+        logger.log("\nVotre vie : " + joueurBarre + " " + joueurPvRestant + "/" + joueurPvMax);
+        logger.log(ennemi.getNom() + " vie : " + ennemiBarre + " " + ennemiPvRestant + "/" + ennemiPvMax);
     }
 }
