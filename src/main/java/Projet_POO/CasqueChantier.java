@@ -8,9 +8,18 @@ public class CasqueChantier extends Capacite implements CapaciteActive {
 
     @Override
     public void useEffect(Personnage personnage){
-        System.out.println("on a utilisé la capacité active casque de chantier");
-        personnage.defense = personnage.defense * 2; 
-        // AJOUTER UN COMPTEUR, la capacité fonctionne pour 3 attaques
+        System.out.println("Vous enfilez votre casque de chantier ! Défense x2 pendant 3 tours.");
+        personnage.defense = personnage.defense * 2;
+    }
 
+    @Override
+    public void reverseEffect(Personnage personnage){
+        System.out.println("Votre casque de chantier est brisé ... ");
+        personnage.defense = personnage.defense / 2;
+    }
+
+    @Override
+    public String getNom(){
+        return this.label;
     }
 }

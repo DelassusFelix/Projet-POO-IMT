@@ -17,7 +17,11 @@ public class Potion extends Capacite implements CapaciteActive {
     @Override
     public void useEffect(Personnage personnage){
         System.out.println("on a utilisé la capacité active potion");
-        personnage.pv = personnage.pv + 30; 
+        personnage.pv = personnage.pv + 30;
+    }
 
+    @Override
+    public String getNom(){
+        return this.label;
     }
 }

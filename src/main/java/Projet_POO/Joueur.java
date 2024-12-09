@@ -1,26 +1,40 @@
 package Projet_POO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Joueur extends Personnage {
 
-    Capacite capacite; 
+    private List<CapaciteActive> inventaire;
     int score; 
 
     public Joueur(int pv, int force, int defense, int esquive, int critique, String nom){
         super(nom, pv, force, defense, esquive, critique);
+        this.inventaire = new ArrayList<>();
     }
 
     @Override
     public String toString(){
         String data = super.toString();
-        return data + "\nnom : " + nom; 
+        return data + "\nnom : " + nom;
+
     }
 
-    public Capacite getCapacite(){
-        return this.capacite; 
+    public List<CapaciteActive> getInventaire() {
+        return inventaire;
     }
 
-    public void setCapacite(Capacite capacite){
-        this.capacite = capacite;
+    public void ajouterCapacite(CapaciteActive capacite) {
+        inventaire.add(capacite);
+    }
+
+    public void utiliserCapacite(int index) {
+        if (index >= 0 && index < inventaire.size()) {
+            CapaciteActive capacite = inventaire.get(index);
+            capacite.useEffect(this); // Applique l'effet sur le joueur
+        } else {
+            System.out.println("Choix invalide !");
+        }
     }
 
     public int getScore(){
@@ -36,8 +50,4 @@ public class Joueur extends Personnage {
         score= score + value;
         setScore(score); 
     }
-
-
-
-
 }

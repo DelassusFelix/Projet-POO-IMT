@@ -11,6 +11,11 @@ public class LameAiguise extends Capacite implements CapaciteActive {
         System.out.println("on a utilisé la capacité active lame aiguisée");
         personnage.critique = personnage.critique * 2; 
         // AJOUTER UN COMPTEUR, la capacité fonctionne pour 3 attaques
-
     }
+
+    @Override
+    public String getNom(){
+        return this.label;
+    }
+
 }

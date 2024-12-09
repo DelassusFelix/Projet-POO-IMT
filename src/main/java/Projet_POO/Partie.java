@@ -193,6 +193,7 @@ public class Partie {
 
             System.out.println("1. Attaquer");
             System.out.println("2. Fuir");
+            System.out.println("3. Utiliser une capacité de l'inventaire");
             System.out.print("> ");
             int choix = scanner.nextInt();
             scanner.nextLine(); // Pause nécessaire
@@ -206,6 +207,7 @@ public class Partie {
                 } else {
                     ennemi.attaque(joueur);
                     if (!joueur.checkAlive()) {
+                        System.out.println("Vous êtes mort pendant le combat.");
                         break; // Sort du combat
                     }
                 }
@@ -218,14 +220,40 @@ public class Partie {
                     ennemi.attaque(joueur);
                     if (!joueur.checkAlive()) {
                         System.out.println("Vous êtes mort pendant le combat.");
-                        break; // Sort du combat
+                        break;
                     }
                 }
+            } else if (choix == 3) {
+                utiliserInventaire(scanner);
             } else {
                 System.out.println("Choix invalide !");
             }
         }
     }
+
+    private void utiliserInventaire(Scanner scanner) {
+        List<CapaciteActive> inventaire = joueur.getInventaire();
+        if (inventaire.isEmpty()) {
+            System.out.println("Votre inventaire est vide !");
+            return;
+        }
+
+        System.out.println("\n=== Inventaire ===");
+        for (int i = 0; i < inventaire.size(); i++) {
+            System.out.println((i + 1) + ". " + inventaire.get(i).getNom());
+        }
+        System.out.print("Choisissez une capacité : ");
+        int choix = scanner.nextInt();
+        scanner.nextLine(); // Pause pour éviter de sauter l'entrée suivante
+
+        if (choix > 0 && choix <= inventaire.size()) {
+            CapaciteActive capacite = inventaire.get(choix - 1);
+            capacite.useEffect(joueur);
+        } else {
+            System.out.println("Choix invalide !");
+        }
+    }
+
 
 
 
