@@ -19,7 +19,6 @@ public class Partie {
     PetitePotion petitePotion = new PetitePotion();
     XML xml = new XML();
 
-
     /**
      * Constructeur de la classe Partie.
      * Initialise un joueur, une carte, un logger, et une liste d'ennemis.
@@ -67,6 +66,7 @@ public class Partie {
 
     /**
      * Démarre et gère le déroulement principal de la partie.
+     * Cette méthode est responsable de la boucle principale du jeu, gérant les interactions avec le joueur.
      *
      * @throws Exception si une erreur survient lors de l'exécution
      */
@@ -98,15 +98,16 @@ public class Partie {
             switch (choix) {
                 case 1:
                     if (ennemis.isEmpty()) {
-                        if (!firstRound) {
-                            // On s'assure que le joueur peut avancer vers la salle suivante seulement si la partie n'est pas terminée
-                            if (!carte.estArrivee()) {
+
+                        if (!carte.estArrivee()) {
+                            if (!firstRound) {
                                 carte.avancer();
-                                logger.log("\n=== Position : " + (carte.getPositionActuelle() + 1) + " / " + carte.getLongueur() + " ===");
-                                logger.log(carte.getPieceActuelle());
-                                genererEnnemis(carte.getPositionActuelle());
                             }
+                            logger.log("\n=== Position : " + (carte.getPositionActuelle() + 1) + " / " + carte.getLongueur() + " ===");
+                            logger.log(carte.getPieceActuelle());
+                            genererEnnemis(carte.getPositionActuelle());
                         }
+
                         firstRound = false;
                         scanner.nextLine(); // Pour éviter de sauter la saisie suivante
                     } else {
@@ -130,7 +131,7 @@ public class Partie {
 
                     if (choix == 0) {
                         logger.log("Vous quittez la boutique.");
-                        break; // Sortie de la boutique
+                        break;
                     }
 
                     if (choix == 1) {
@@ -146,13 +147,12 @@ public class Partie {
                     }
                     break;
 
-
                 default:
                     logger.log("Choix invalide !");
             }
 
             // Combats avec les ennemis
-            while (!ennemis.isEmpty() && joueur.checkAlive()) { // Vérifie si le joueur est vivant
+            while (!ennemis.isEmpty() && joueur.checkAlive()) {
                 Personnage ennemi = choisirEnnemi(scanner);
                 if (ennemi != null) {
                     combat(ennemi);
@@ -176,7 +176,6 @@ public class Partie {
         }
     }
 
-
     /**
      * Affiche l'état actuel du héros, incluant ses points de vie, sa force, et ses statistiques.
      */
@@ -191,14 +190,12 @@ public class Partie {
         logger.log("\n\n");
     }
 
-
     /**
      * Supprime les ennemis morts (PV <= 0) de la liste des ennemis.
      */
     private void nettoyerEnnemis() {
         ennemis.removeIf(ennemi -> !ennemi.checkAlive());
     }
-
 
     /**
      * Permet au joueur de choisir un ennemi parmi ceux disponibles.
@@ -219,7 +216,6 @@ public class Partie {
             return null;
         }
 
-
         logger.log("\n=== Choisissez un ennemi à combattre ===");
         for (int i = 0; i < ennemis.size(); i++) {
             MechantInterface ennemi = (MechantInterface) ennemis.get(i); // cast
@@ -235,7 +231,6 @@ public class Partie {
 
         return ennemis.get(choix - 1);
     }
-
 
     /**
      * Gère le combat entre le joueur et un ennemi spécifique.
@@ -261,7 +256,6 @@ public class Partie {
             if (joueur.capacite.isDisponible() && countCapacite < joueur.capacite.getCount()) {
                 logger.log("4. Utiliser votre capacité");
             }
-
 
             System.out.print("> ");
             int choix = scanner.nextInt();
@@ -291,7 +285,7 @@ public class Partie {
                     ennemi.attaque(joueur);
                     if (!joueur.checkAlive()) {
                         logger.log("Vous êtes mort pendant le combat.");
-                        break; // Sort du combat
+                        break;
                     }
                 }
             } else if (choix == 2) {
@@ -322,8 +316,6 @@ public class Partie {
             }
         }
     }
-
-
 
     /**
      * Affiche les barres de vie du joueur et de l'ennemi.

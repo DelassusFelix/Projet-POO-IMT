@@ -4075,3 +4075,138 @@ Vous avez vaincu Voleur !
 Vous avez gagné : 40 crédits
 Vous avez vaincu Voleur !
 Bravo ! Vous avez traversé "L'IMT Nord Horror" !
+
+██╗███╗   ███╗████████╗    ████████╗██╗  ██╗███████╗███╗   ███╗     █████╗ ██╗     ██╗     
+██║████╗ ████║╚══██╔══╝    ╚══██╔══╝██║  ██║██╔════╝████╗ ████║    ██╔══██╗██║     ██║     
+██║██╔████╔██║   ██║          ██║   ███████║█████╗  ██╔████╔██║    ███████║██║     ██║     
+██║██║╚██╔╝██║   ██║          ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║     
+██║██║ ╚═╝ ██║   ██║          ██║   ██║  ██║███████╗██║ ╚═╝ ██║    ██║  ██║███████╗███████╗
+╚═╝╚═╝     ╚═╝   ╚═╝          ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚══════╝
+
+Bienvenue jeune aventurier !
+
+Comment vous appellez vous ? : 
+
+Seléctionnez une carte : 
+
+██╗███╗   ███╗████████╗    ████████╗██╗  ██╗███████╗███╗   ███╗     █████╗ ██╗     ██╗     
+██║████╗ ████║╚══██╔══╝    ╚══██╔══╝██║  ██║██╔════╝████╗ ████║    ██╔══██╗██║     ██║     
+██║██╔████╔██║   ██║          ██║   ███████║█████╗  ██╔████╔██║    ███████║██║     ██║     
+██║██║╚██╔╝██║   ██║          ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║     
+██║██║ ╚═╝ ██║   ██║          ██║   ██║  ██║███████╗██║ ╚═╝ ██║    ██║  ██║███████╗███████╗
+╚═╝╚═╝     ╚═╝   ╚═╝          ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚══════╝
+
+Bienvenue jeune aventurier !
+
+Comment vous appellez vous ? : 
+
+Seléctionnez une carte : 
+== Capacité actives ==
+1. Casque de Chantier - Enfile ton casque ! Double ta défense pendant 3 attaques
+2. Cocktail Molotov - Ca va chauffer.. brule tout les ennemis d'un seul coup
+3. Lame Aiguisée - Affuté.. double tes chances de critique pendant 3 attaques. Ca va piquer !
+4. Potion - Une grande soife contre les grands dégats. Restaure 30 PV
+
+== Capacité passives ==
+5. Gillet par Balle - Pas de place aux doutes. Mets ton gilet, sois fort et gagne 1 point de défense 
+6. Grosse Epée - Voici une meilleure épée !
+7. Pas de plume - Agile bill, te voila leger comme l'air. Tu doubles ta capacité d'esquive
+
+Quelle capacité souhaitez vous prendre : 
+>
+Vous avez choisi la capacité active : Lame Aiguisée
+
+Bienvenue dans l'aventure sur la carte "Le CROUS ténébreux".
+Bonne chance !
+-------------------------------------------------
+
+=== Position : 1 / 4 ===
+Restez alertes, vous entrez dans le self.
+
+1. Lancer la partie.
+2. Consulter l'état du héros
+3. Acheter un objet
+
+=== Bienvenue dans la boutique ===
+
+Que voulez-vous acheter Félix ?
+Crédits : 0
+
+0. Quitter la boutique
+1. Petite potion (prix : 25)
+Vous quittez la boutique.
+
+1. Lancer la partie.
+2. Consulter l'état du héros
+3. Acheter un objet
+
+=== État du héros ===
+PV : 100 / 100
+Force : 10
+Coup critique : 50 %
+Défense : 10.0
+Esquive : 50 %
+
+
+
+
+1. Lancer la partie.
+2. Consulter l'état du héros
+3. Acheter un objet
+
+1. Salle suivante
+2. Consulter l'état du héros
+3. Acheter un objet
+
+=== Position : 2 / 4 ===
+Vous arrivez au buffet, méfiez vous.
+
+=== Choisissez un ennemi à combattre ===
+1. Voleur (lvl: 2 ,PV: 40)
+2. Brigand (lvl: 3 ,PV: 90)
+3. Brigand (lvl: 2 ,PV: 60)
+
+██╗███╗   ███╗████████╗    ████████╗██╗  ██╗███████╗███╗   ███╗     █████╗ ██╗     ██╗     
+██║████╗ ████║╚══██╔══╝    ╚══██╔══╝██║  ██║██╔════╝████╗ ████║    ██╔══██╗██║     ██║     
+██║██╔████╔██║   ██║          ██║   ███████║█████╗  ██╔████╔██║    ███████║██║     ██║     
+██║██║╚██╔╝██║   ██║          ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║     
+██║██║ ╚═╝ ██║   ██║          ██║   ██║  ██║███████╗██║ ╚═╝ ██║    ██║  ██║███████╗███████╗
+╚═╝╚═╝     ╚═╝   ╚═╝          ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚══════╝
+
+Bienvenue jeune aventurier !
+
+Comment vous appellez vous ? : 
+
+Seléctionnez une carte : 
+== Capacité actives ==
+1. Casque de Chantier - Enfile ton casque ! Double ta défense pendant 3 attaques
+2. Cocktail Molotov - Ca va chauffer.. brule tout les ennemis d'un seul coup
+3. Lame Aiguisée - Affuté.. double tes chances de critique pendant 3 attaques. Ca va piquer !
+4. Potion - Une grande soife contre les grands dégats. Restaure 30 PV
+
+== Capacité passives ==
+5. Gillet par Balle - Pas de place aux doutes. Mets ton gilet, sois fort et gagne 1 point de défense 
+6. Grosse Epée - Voici une meilleure épée !
+7. Pas de plume - Agile bill, te voila leger comme l'air. Tu doubles ta capacité d'esquive
+
+Quelle capacité souhaitez vous prendre : 
+>
+Vous avez choisi la capacité active : Cocktail Molotov
+
+Bienvenue dans l'aventure sur la carte "Le CROUS ténébreux".
+Bonne chance !
+-------------------------------------------------
+
+=== Position : 1 / 4 ===
+Restez alertes, vous entrez dans le self.
+
+1. Lancer la partie.
+2. Consulter l'état du héros
+3. Acheter un objet
+
+=== Position : 2 / 4 ===
+Vous arrivez au buffet, méfiez vous.
+
+=== Choisissez un ennemi à combattre ===
+1. Voleur (lvl: 3 ,PV: 60)
+2. Voleur (lvl: 4 ,PV: 80)
