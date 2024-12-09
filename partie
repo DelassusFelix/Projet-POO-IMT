@@ -4994,3 +4994,284 @@ Voleur vie : [==================================================] 40/40
 1. Attaquer
 2. Fuir
 3. Utiliser un objet
+
+██╗███╗   ███╗████████╗    ████████╗██╗  ██╗███████╗███╗   ███╗     █████╗ ██╗     ██╗     
+██║████╗ ████║╚══██╔══╝    ╚══██╔══╝██║  ██║██╔════╝████╗ ████║    ██╔══██╗██║     ██║     
+██║██╔████╔██║   ██║          ██║   ███████║█████╗  ██╔████╔██║    ███████║██║     ██║     
+██║██║╚██╔╝██║   ██║          ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║     
+██║██║ ╚═╝ ██║   ██║          ██║   ██║  ██║███████╗██║ ╚═╝ ██║    ██║  ██║███████╗███████╗
+╚═╝╚═╝     ╚═╝   ╚═╝          ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚══════╝
+
+Bienvenue jeune aventurier !
+
+Comment vous appellez vous ? : 
+
+Seléctionnez une carte : 
+== Capacité actives ==
+1. Casque de Chantier - Enfile ton casque ! Double ta défense pendant 3 attaques
+2. Cocktail Molotov - Ca va chauffer.. brule tout les ennemis d'un seul coup
+3. Lame Aiguisée - Affuté.. double tes chances de critique pendant 3 attaques. Ca va piquer !
+4. Potion - Une grande soife contre les grands dégats. Restaure 30 PV
+
+== Capacité passives ==
+5. Gillet par Balle - Pas de place aux doutes. Mets ton gilet, sois fort et gagne 1 point de défense 
+6. Grosse Epée - Voici une meilleure épée ! Elle va doubler ta force.. oui, ce sera brutal
+7. Pas de plume - Agile Bill.. te voila leger comme l'air. Tu doubles ta capacité d'esquive
+
+Quelle capacité souhaitez vous prendre : 
+>
+Vous avez choisi la capacité active : Casque de Chantier
+
+Bienvenue dans l'aventure sur la carte "L'IMT Nord Horror".
+Bonne chance !
+-------------------------------------------------
+
+=== Position : 1 / 4 ===
+Vous arrivez sur le parking de l'IMT, prenez garde.
+
+1. Lancer la partie.
+2. Consulter l'état du héros
+3. Acheter un objet
+
+1. Salle suivante
+2. Consulter l'état du héros
+3. Acheter un objet
+
+=== Position : 2 / 4 ===
+Vous êtes devant l'amphi Byron, attention aux ennemis.
+
+=== Choisissez un ennemi à combattre ===
+1. Voleur (lvl: 4 ,PV: 80)
+2. Voleur (lvl: 4 ,PV: 80)
+3. Voleur (lvl: 2 ,PV: 40)
+
+Votre vie : [==================================================] 100/100
+Voleur vie : [==================================================] 80/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [==================================================] 100/100
+Voleur vie : [==================================================] 80/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [================================================= ] 99/100
+Voleur vie : [=====================================             ] 60/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [================================================  ] 97/100
+Voleur vie : [=====================================             ] 60/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [================================================  ] 97/100
+Voleur vie : [=====================================             ] 60/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [===============================================   ] 95/100
+Voleur vie : [=====================================             ] 60/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [===============================================   ] 95/100
+Voleur vie : [=====================================             ] 60/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [==============================================    ] 93/100
+Voleur vie : [=========================                         ] 40/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [=============================================     ] 91/100
+Voleur vie : [==================                                ] 30/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [============================================      ] 88/100
+Voleur vie : [======                                            ] 10/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+Vous avez vaincu Voleur !
+Vous avez gagné : 80 crédits
+Vous avez vaincu Voleur !
+
+=== Choisissez un ennemi à combattre ===
+1. Voleur (lvl: 4 ,PV: 80)
+2. Voleur (lvl: 2 ,PV: 40)
+
+Votre vie : [============================================      ] 88/100
+Voleur vie : [==================================================] 80/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [============================================      ] 88/100
+Voleur vie : [==================================================] 80/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [============================================      ] 88/100
+Voleur vie : [==================================================] 80/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [============================================      ] 88/100
+Voleur vie : [==================================================] 80/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [============================================      ] 88/100
+Voleur vie : [==================================================] 80/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+██╗███╗   ███╗████████╗    ████████╗██╗  ██╗███████╗███╗   ███╗     █████╗ ██╗     ██╗     
+██║████╗ ████║╚══██╔══╝    ╚══██╔══╝██║  ██║██╔════╝████╗ ████║    ██╔══██╗██║     ██║     
+██║██╔████╔██║   ██║          ██║   ███████║█████╗  ██╔████╔██║    ███████║██║     ██║     
+██║██║╚██╔╝██║   ██║          ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║     
+██║██║ ╚═╝ ██║   ██║          ██║   ██║  ██║███████╗██║ ╚═╝ ██║    ██║  ██║███████╗███████╗
+╚═╝╚═╝     ╚═╝   ╚═╝          ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚══════╝
+
+Bienvenue jeune aventurier !
+
+Comment vous appellez vous ? : 
+
+Seléctionnez une carte : 
+== Capacité actives ==
+1. Casque de Chantier - Enfile ton casque ! Double ta défense pendant 3 attaques
+2. Cocktail Molotov - Ca va chauffer.. brule tout les ennemis d'un seul coup
+3. Lame Aiguisée - Affuté.. double tes chances de critique pendant 3 attaques. Ca va piquer !
+4. Potion - Une grande soife contre les grands dégats. Restaure 30 PV
+
+== Capacité passives ==
+5. Gillet par Balle - Pas de place aux doutes. Mets ton gilet, sois fort et gagne 1 point de défense 
+6. Grosse Epée - Voici une meilleure épée ! Elle va doubler ta force.. oui, ce sera brutal
+7. Pas de plume - Agile Bill.. te voila leger comme l'air. Tu doubles ta capacité d'esquive
+
+Quelle capacité souhaitez vous prendre : 
+>
+Vous avez choisi la capacité active : Potion
+
+Bienvenue dans l'aventure sur la carte "L'IMT Nord Horror".
+Bonne chance !
+-------------------------------------------------
+
+=== Position : 1 / 4 ===
+Vous arrivez sur le parking de l'IMT, prenez garde.
+
+1. Lancer la partie.
+2. Consulter l'état du héros
+3. Acheter un objet
+
+1. Salle suivante
+2. Consulter l'état du héros
+3. Acheter un objet
+
+=== Position : 2 / 4 ===
+Vous êtes devant l'amphi Byron, attention aux ennemis.
+
+=== Choisissez un ennemi à combattre ===
+1. Voleur (lvl: 4 ,PV: 80)
+2. Voleur (lvl: 4 ,PV: 80)
+3. Voleur (lvl: 4 ,PV: 80)
+
+Votre vie : [==================================================] 100/100
+Voleur vie : [==================================================] 80/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [=====                                             ] 10/100
+Voleur vie : [==================================================] 80/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [=====                                             ] 10/100
+Voleur vie : [==================================================] 80/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [=====                                             ] 10/100
+Voleur vie : [==================================================] 80/80
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+██╗███╗   ███╗████████╗    ████████╗██╗  ██╗███████╗███╗   ███╗     █████╗ ██╗     ██╗     
+██║████╗ ████║╚══██╔══╝    ╚══██╔══╝██║  ██║██╔════╝████╗ ████║    ██╔══██╗██║     ██║     
+██║██╔████╔██║   ██║          ██║   ███████║█████╗  ██╔████╔██║    ███████║██║     ██║     
+██║██║╚██╔╝██║   ██║          ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║     
+██║██║ ╚═╝ ██║   ██║          ██║   ██║  ██║███████╗██║ ╚═╝ ██║    ██║  ██║███████╗███████╗
+╚═╝╚═╝     ╚═╝   ╚═╝          ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚══════╝
+
+Bienvenue jeune aventurier !
+
+Comment vous appellez vous ? : 
+
+Seléctionnez une carte : 
+== Capacité actives ==
+1. Casque de Chantier - Enfile ton casque ! Double ta défense pendant 3 attaques
+2. Cocktail Molotov - Ca va chauffer.. brule tout les ennemis d'un seul coup
+3. Lame Aiguisée - Affuté.. double tes chances de critique pendant 3 attaques. Ca va piquer !
+4. Potion - Une grande soife contre les grands dégats. Restaure 30 PV
+
+== Capacité passives ==
+5. Gillet par Balle - Pas de place aux doutes. Mets ton gilet, sois fort et gagne 1 point de défense 
+6. Grosse Epée - Voici une meilleure épée ! Elle va doubler ta force.. oui, ce sera brutal
+7. Pas de plume - Agile Bill.. te voila leger comme l'air. Tu doubles ta capacité d'esquive
+
+Quelle capacité souhaitez vous prendre : 
+>
+Vous avez choisi la capacité active : Cocktail Molotov
+
+Bienvenue dans l'aventure sur la carte "L'IMT Nord Horror".
+Bonne chance !
+-------------------------------------------------
+
+=== Position : 1 / 4 ===
+Vous arrivez sur le parking de l'IMT, prenez garde.
+
+1. Lancer la partie.
+2. Consulter l'état du héros
+3. Acheter un objet
+
+1. Salle suivante
+2. Consulter l'état du héros
+3. Acheter un objet
+
+=== Position : 2 / 4 ===
+Vous êtes devant l'amphi Byron, attention aux ennemis.
+
+=== Choisissez un ennemi à combattre ===
+1. Catcheur (lvl: 2 ,PV: 70)
+
+Votre vie : [==================================================] 100/100
+Catcheur vie : [==================================================] 70/70
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+
+Votre vie : [==================================================] 100/100
+Catcheur vie : [============================                      ] 40/70
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
