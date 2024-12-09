@@ -1,9 +1,9 @@
 package Projet_POO;
 
-public class CocktailMolotov extends Capacite implements CapaciteActive {
+public class CocktailMolotov extends Utilitaire implements CapaciteActiveInterface {
 
     public CocktailMolotov(){
-        super("Ca va chauffer.. brule tout les ennemis d'un seul coup");
+        super("Ca va chauffer.. brule tout les ennemis d'un seul coup", "Cocktail Molotov");
     }
 
     @Override
@@ -14,6 +14,16 @@ public class CocktailMolotov extends Capacite implements CapaciteActive {
     }
     @Override
     public String getNom(){
+        return this.nom;
+    }
+
+    @Override
+    public String getLabel(){
         return this.label;
     }
+
+    public void afficher(){
+        System.out.println(this.nom + ": \n" + this.label);
+    }
+    
 }

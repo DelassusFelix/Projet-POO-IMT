@@ -22,7 +22,7 @@ public class XML {
 
     // TODO factoriser le code commun au début de modifierXML() et afficherScore() par une fonction chargerXML() 
 
-    public void modifyXML(String quelleCarte, int nouveauScoreInt) 
+    public void modifyXML(Carte carteArg, int nouveauScoreInt, String nomJoueur) 
     {
         try {
             // Charger le fichier XML
@@ -48,14 +48,16 @@ public class XML {
                     // Vérifier si c'est celle qui nous interesse
                     String nomCarte = carteElement.getElementsByTagName("nomCarte").item(0).getTextContent();
 
-                    if (nomCarte.equals(quelleCarte)) {
+                    if (nomCarte.equals(carteArg.getNom())) {
                         // Modifier le score
                         Element scoreActuel = (Element) carteElement.getElementsByTagName("score").item(0);
                         int scoreActuelInt = Integer.parseInt(scoreActuel.getTextContent());
+                        Element nomActuel = (Element) carteElement.getElementsByTagName("nomJoueur").item(0);
 
                         if (nouveauScoreInt > scoreActuelInt) {
                             String nouveauScoreStr = "" + nouveauScoreInt;
                             scoreActuel.setTextContent(nouveauScoreStr);
+                            nomActuel.setTextContent(nomJoueur);
                             System.out.println("Score modifié avec succès.");
                             break; // Quitter la boucle une fois la modification faite
 
@@ -80,7 +82,10 @@ public class XML {
 
     }
 
-    public String afficherScore(String quelleCarte){
+    public String afficherScore(Carte carteArg){
+
+        System.out.print("=== Tableau des scores ===\n");
+        System.out.print("== " + carteArg.getNom() + " ==\n");
 
         try {
           // Charger le fichier XML
@@ -107,7 +112,7 @@ public class XML {
                   // Vérifier si c'est celle qui nous interesse
                   String nomCarte = carteElement.getElementsByTagName("nomCarte").item(0).getTextContent();
 
-                  if (nomCarte.equals(quelleCarte)) {
+                  if (nomCarte.equals(carteArg.getNom())) {
                     String nomJoueur = carteElement.getElementsByTagName("nomJoueur").item(0).getTextContent();
                     String scoreJoueur = carteElement.getElementsByTagName("score").item(0).getTextContent();
                     affichage = affichage + "Joueur : " + nomJoueur + "\n" + "score : " + scoreJoueur + "\n"; 

@@ -6,10 +6,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-
         XML xml = new XML();
-        System.out.println(xml.afficherScore("Donjon Ténébreux"));
-
 
         List<String> piecesCarteImt = new ArrayList<>();
         piecesCarteImt.add("Vous arrivez sur le parking de l'IMT, prenez garde.");
@@ -38,75 +35,16 @@ public class Main {
         cartesDispo.add(bibliotheque);
 
 
-        Potion potion = new Potion();
-        GrosseEpee degat = new GrosseEpee();
 
-        /*// mise à niveau des mechants
-        voleur1.setNiveauMechant(10);
-        brigand1.setNiveauMechant(10);
-        catcheur1.setNiveauMechant(10);
-
-        // test des capacités
-        System.out.println(joueur1.toString());
-        joueur1.setCapacite(potion);
-        joueur1.capacite.useEffect(joueur1);
-        System.out.println(joueur1.toString());
-
-        System.out.println(joueur1.toString());
-        joueur1.setCapacite(degat);
-        joueur1.capacite.useEffect(joueur1);
-        System.out.println(joueur1.toString());
-
-        xml.modifyXML("Donjon Ténébreux", 16000);*/
-
-
-        /* a conserver dans ce commit si besoin, premiere version des capacités.
-        c'était pas bien car on implémenté un joueur à une capacité.
-        Donc chaque capacité aura qu'un seul joueur, ca marche mais c'est pas très élégant
-        Les commentaires dans Capacite, CPotion, etc.. en font partie
-
-        System.out.println(joueur1.toString());
-        potion.setPersonnage(joueur1);
-        potion.useEffect();
-        System.out.println(joueur1.toString());
-        */
-
-       /* String brigand = "Brigand";
-        String voleur = "Voleur";
-        String catcheur = "Catcheur";
-
-        ArrayList<String> ennemisSalle1 = new ArrayList<String>();
-        ennemisSalle1.add(voleur);
-        ennemisSalle1.add(voleur);
-
-        ArrayList<String> ennemisSalle2 = new ArrayList<String>();
-        ennemisSalle2.add(catcheur);
-*/
-
-        /* trace de combat
-
-        while( voleur1.checkAlive() && brigand1.checkAlive()){
-            System.out.println(
-                "\n"+ voleur1.getNom() +
-                "\npv : " + voleur1.getPv() +
-                "\n"+ brigand1.getNom() +
-                "\npv : " + brigand1.getPv());
-            voleur1.attaque(brigand1);
-            System.out.println(
-                "\n"+ voleur1.getNom() +
-                "\npv : " + voleur1.getPv() +
-                "\n"+ brigand1.getNom() +
-                "\npv : " + brigand1.getPv());
-            brigand1.attaque(voleur1);
-        }
-            */
-
+        // Scanner pour interaction utilisateur
         Scanner scanner = new Scanner(System.in);
 
+        // Demande le nom du héros
         System.out.println("Entrez le nom de votre héros : ");
         String name = scanner.nextLine();
 
-        System.out.println("\nSeléctionnez une carte : ");
+        // Sélection de la carte
+        System.out.println("\nSélectionnez une carte : ");
         final int[] index = {1};
         cartesDispo.forEach(carte -> {
             System.out.println(index[0] + ": " + carte.getNom());
@@ -114,10 +52,75 @@ public class Main {
         });
 
         int numCarte = scanner.nextInt();
-        Joueur joueur1 = new Joueur(10,10,10,50,50, name);
+        Carte carteChoisie = cartesDispo.get(numCarte - 1);
 
-        Partie partie = new Partie(joueur1, cartesDispo.get(numCarte-1));
+        // Création du joueur
+        Joueur joueur1 = new Joueur(10, 10, 10, 50, 50, name);
+
+        // Choisir une capacité
+        Utilitaire capaciteChoisie = ChoisirLaCapacites();
+        if (capaciteChoisie != null) {
+            joueur1.setCapacite(capaciteChoisie); // Ajout de la capacité au joueur
+        }
+
+        // Démarrer une partie
+        Partie partie = new Partie(joueur1, carteChoisie);
         partie.jouer();
+    }
 
+    public static Utilitaire ChoisirLaCapacites() {
+        List<CapaciteActiveInterface> ListeCapacitesActives = new ArrayList<>();
+        List<CapacitePassiveInterface> ListeCapacitesPassives = new ArrayList<>();
+
+        // Création des instances des capacités
+        CasqueChantier casqueChantier = new CasqueChantier();
+        CocktailMolotov cocktailMolotov = new CocktailMolotov();
+        GilletParBalle gilletParBalle = new GilletParBalle();
+        GrosseEpee grosseEpee = new GrosseEpee();
+        LameAiguise lameAiguise = new LameAiguise();
+        PasDePlume pasDePlume = new PasDePlume();
+        Potion potion = new Potion();
+
+        // Ajout des capacités à leurs listes respectives
+        ListeCapacitesActives.add(casqueChantier);
+        ListeCapacitesActives.add(cocktailMolotov);
+        ListeCapacitesActives.add(lameAiguise);
+        ListeCapacitesActives.add(potion);
+
+        ListeCapacitesPassives.add(gilletParBalle);
+        ListeCapacitesPassives.add(grosseEpee);
+        ListeCapacitesPassives.add(pasDePlume);
+
+        // Affichage des capacités
+        System.out.println("\n=== Capacités Actives ===");
+        int id = 1;
+        for (CapaciteActiveInterface capacite : ListeCapacitesActives) {
+            System.out.println(id++ + ". " + capacite.getNom() + " - " + capacite.getLabel());
+        }
+
+        System.out.println("\n=== Capacités Passives ===");
+        for (CapacitePassiveInterface capacite : ListeCapacitesPassives) {
+            System.out.println(id++ + ". " + capacite.getNom() + " - " + capacite.getLabel());
+        }
+
+        // Demander à l'utilisateur de faire un choix
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nEntrez le numéro de la capacité que vous souhaitez sélectionner : ");
+        int choix = scanner.nextInt();
+        scanner.nextLine(); // Consommer la ligne restante
+
+        // Valider le choix et retourner l'objet correspondant
+        if (choix > 0 && choix <= ListeCapacitesActives.size()) {
+            CapaciteActiveInterface capaciteChoisie = ListeCapacitesActives.get(choix - 1);
+            System.out.println("Vous avez sélectionné l'active : " + capaciteChoisie.getNom());
+            return (Utilitaire) capaciteChoisie;
+        } else if (choix > ListeCapacitesActives.size() && choix <= ListeCapacitesActives.size() + ListeCapacitesPassives.size()) {
+            CapacitePassiveInterface capaciteChoisie = ListeCapacitesPassives.get(choix - ListeCapacitesActives.size() - 1);
+            System.out.println("Vous avez sélectionné la passive : " + capaciteChoisie.getNom());
+            return (Utilitaire) capaciteChoisie;
+        } else {
+            System.out.println("Choix invalide, aucune capacité sélectionnée.");
+            return null;
+        }
     }
 }

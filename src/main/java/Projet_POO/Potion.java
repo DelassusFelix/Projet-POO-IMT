@@ -1,9 +1,9 @@
 package Projet_POO;
 
-public class Potion extends Capacite implements CapaciteActive {
+public class Potion extends Utilitaire implements CapaciteActiveInterface {
 
     public Potion(){
-        super("Une grande soife contre les grands dégats. Restaure 30 PV");
+        super("Une grande soife contre les grands dégats. Restaure 30 PV", "Potion");
     }
 
     /* 
@@ -22,6 +22,13 @@ public class Potion extends Capacite implements CapaciteActive {
 
     @Override
     public String getNom(){
-        return this.label;
+        return this.nom;
+    }
+
+    @Override
+    public String getLabel() { return this.label;}
+
+    public void afficher(){
+        System.out.println(this.nom + ": \n" + this.label);
     }
 }

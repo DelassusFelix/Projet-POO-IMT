@@ -15,6 +15,7 @@ public class Voleur extends Personnage implements MechantInterface{
         return this.nom;
     }
 
+    @Override
     public int getNiveau() {
         return niveau;
     }
@@ -39,6 +40,9 @@ public class Voleur extends Personnage implements MechantInterface{
 
         return voleur;
     }
+
+    @Override
+    public void attaque(){}
 
 
 

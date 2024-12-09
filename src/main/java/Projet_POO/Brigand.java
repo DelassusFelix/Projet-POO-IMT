@@ -40,6 +40,8 @@ public class Brigand extends Personnage implements MechantInterface{
         return brigand;
     }
 
+    @Override
+    public void attaque(){}
 
 
 }

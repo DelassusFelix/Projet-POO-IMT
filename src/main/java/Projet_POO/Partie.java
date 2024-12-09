@@ -16,6 +16,10 @@ public class Partie {
     private List<Personnage> ennemis;
     private Logger logger;
 
+    PetitePotion petitePotion = new PetitePotion();
+    XML xml = new XML();
+
+
     /**
      * Constructeur de la classe Partie.
      * Initialise un joueur, une carte, un logger, et une liste d'ennemis.
@@ -71,6 +75,7 @@ public class Partie {
         boolean firstRound = true;
         boolean affichPosition = true;
 
+        scanner.nextLine();
         System.out.println("\nBienvenue dans l'aventure sur la carte \"" + carte.getNom() + "\".");
         System.out.println("Bonne chance !");
         System.out.println("-------------------------------------------------");
@@ -85,6 +90,7 @@ public class Partie {
 
             System.out.println(firstRound ? "\n1. Lancer la partie." : "\n1. Salle suivante");
             System.out.println("2. Consulter l'état du héros");
+            System.out.println("3. Acheter un objet");
             System.out.print("> ");
 
             int choix = scanner.nextInt();
@@ -111,6 +117,26 @@ public class Partie {
                     afficherEtatHeros();
                     break;
 
+                case 3: 
+                    System.out.println("\n=== Bienvenue dans la boutique ===");
+                    System.out.println("\nCrédits : " + joueur.getScore());
+                    System.out.println("Que voulez-vous acheter " + joueur.getNom() + " ?");
+
+                    System.out.println("1. Petite potion (prix : " + petitePotion.getCout() + ")");
+                    choix = scanner.nextInt();
+                    scanner.nextLine();
+
+                    if (choix == 1) {
+                        if (joueur.getScore() > petitePotion.getCout()){
+                            joueur.addObjet(petitePotion); 
+                            joueur.setScore(joueur.getScore() - petitePotion.getCout()); 
+                            System.out.println("Achat effecuté avec succès");
+                        } else {
+                            System.out.println("Vous n'avez pas assez de crédits.");
+                        }
+                    }
+                    break; 
+
                 default:
                     System.out.println("Choix invalide !");
             }
@@ -126,12 +152,14 @@ public class Partie {
             // Vérifie si le joueur est mort après un combat
             if (!joueur.checkAlive()) {
                 logger.log("\nGame Over. Vous êtes mort.");
+                xml.modifyXML(carte, joueur.getScore(), joueur.getNom());
                 break;
             }
 
             // Conditions de victoire
             if (carte.estArrivee() && joueur.checkAlive()) {
                 System.out.println("Bravo ! Vous avez traversé \"" + carte.getNom() + "\" !");
+                xml.modifyXML(carte, joueur.getScore(), joueur.getNom());
                 scanner.nextLine();
                 break;
             }
@@ -149,6 +177,7 @@ public class Partie {
         System.out.println("Coup critique : " + joueur.getCritique() + " %");
         System.out.println("Défense : " + joueur.getDefense());
         System.out.println("Esquive : " + joueur.getEsquive() + " %");
+        joueur.showObjets();
     }
 
     /**
@@ -165,8 +194,8 @@ public class Partie {
 
         System.out.println("\n=== Choisissez un ennemi à combattre ===");
         for (int i = 0; i < ennemis.size(); i++) {
-            Personnage ennemi = ennemis.get(i);
-            System.out.println((i + 1) + ". " + ennemi.getNom() + " (PV: " + ennemi.getPv() + ", Force: " + ennemi.getForce() + ")");
+            MechantInterface ennemi = (MechantInterface) ennemis.get(i); // cast
+            System.out.println((i + 1) + ". " + ennemi.getNom() + " (lvl: " + ennemi.getNiveau() + " ,PV: " + ennemi.getPv() + ")");
         }
         System.out.print("> ");
         int choix = scanner.nextInt();
@@ -188,12 +217,16 @@ public class Partie {
     private void combat(Personnage ennemi) {
         Scanner scanner = new Scanner(System.in);
 
+        int scoreGagne = ennemi.getPv();
+
         while (joueur.checkAlive() && ennemi.checkAlive()) {
+        
             afficherBarresDeVie(ennemi);
 
             System.out.println("1. Attaquer");
             System.out.println("2. Fuir");
-            System.out.println("3. Utiliser une capacité de l'inventaire");
+            System.out.println("3. Utiliser votre capacité");
+            System.out.println("4. Utiliser un objet");
             System.out.print("> ");
             int choix = scanner.nextInt();
             scanner.nextLine(); // Pause nécessaire
@@ -201,6 +234,9 @@ public class Partie {
             if (choix == 1) {
                 joueur.attaque(ennemi);
                 if (!ennemi.checkAlive()) {
+                    System.out.println("Vous avez vaincu " + ennemi.getNom() + " !"); 
+                    System.out.println("Vous avez gagnez : " + scoreGagne + " point de score");
+                    joueur.setScore(joueur.getScore() + scoreGagne); 
                     ennemis.remove(ennemi);
                     System.out.println("Vous avez vaincu " + ennemi.getNom() + " !");
                     break;
@@ -224,35 +260,17 @@ public class Partie {
                     }
                 }
             } else if (choix == 3) {
-                utiliserInventaire(scanner);
+                joueur.capacite.useEffect(joueur);
+            } else if (choix == 4) {
+                System.out.println(joueur.showObjets()); 
+                joueur.useObjets();
             } else {
                 System.out.println("Choix invalide !");
             }
         }
     }
 
-    private void utiliserInventaire(Scanner scanner) {
-        List<CapaciteActive> inventaire = joueur.getInventaire();
-        if (inventaire.isEmpty()) {
-            System.out.println("Votre inventaire est vide !");
-            return;
-        }
 
-        System.out.println("\n=== Inventaire ===");
-        for (int i = 0; i < inventaire.size(); i++) {
-            System.out.println((i + 1) + ". " + inventaire.get(i).getNom());
-        }
-        System.out.print("Choisissez une capacité : ");
-        int choix = scanner.nextInt();
-        scanner.nextLine(); // Pause pour éviter de sauter l'entrée suivante
-
-        if (choix > 0 && choix <= inventaire.size()) {
-            CapaciteActive capacite = inventaire.get(choix - 1);
-            capacite.useEffect(joueur);
-        } else {
-            System.out.println("Choix invalide !");
-        }
-    }
 
 
 

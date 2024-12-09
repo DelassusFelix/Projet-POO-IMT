@@ -1,9 +1,9 @@
 package Projet_POO;
 
-public class GilletParBalle extends Capacite implements CapacitePassive {
+public class GilletParBalle extends Utilitaire implements CapacitePassiveInterface {
 
     public GilletParBalle(){
-        super("Pas de place aux doutes. Mets ton gilet, sois fort et gagne 1 point de défense ");
+        super("Pas de place aux doutes. Mets ton gilet, sois fort et gagne 1 point de défense ", "Gillet par Balle");
     }
 
     /* 
@@ -19,5 +19,19 @@ public class GilletParBalle extends Capacite implements CapacitePassive {
         System.out.println("on a utilisé la capacite passive Gillet par Balles");
         personnage.defense = personnage.defense + 1; 
 
+    }
+
+    @Override
+    public String getNom(){
+        return this.nom;
+    };
+
+    @Override
+    public String getLabel(){
+        return this.label;
+    }
+
+    public void afficher(){
+        System.out.println(this.nom + ": \n" + this.label);
     }
 }

@@ -40,6 +40,9 @@ public class Catcheur extends Personnage implements MechantInterface{
         return catcheur;
     }
 
+    @Override
+    public void attaque(){}
+
 
 
 }

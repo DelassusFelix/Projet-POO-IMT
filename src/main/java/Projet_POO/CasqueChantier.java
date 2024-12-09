@@ -1,9 +1,9 @@
 package Projet_POO;
 
-public class CasqueChantier extends Capacite implements CapaciteActive {
+public class CasqueChantier extends Utilitaire implements CapaciteActiveInterface {
 
     public CasqueChantier(){
-        super("Enfile ton casque ! Double ta défense pendant 3 attaques");    
+        super("Enfile ton casque ! Double ta défense pendant 3 attaques", "Casque de Chantier");    
     }
 
     @Override
@@ -20,6 +20,15 @@ public class CasqueChantier extends Capacite implements CapaciteActive {
 
     @Override
     public String getNom(){
+        return this.nom;
+    }
+
+    @Override
+    public String getLabel(){
         return this.label;
+    }
+    
+    public void afficher(){
+        System.out.println(this.nom + ": \n" + this.label);
     }
 }
