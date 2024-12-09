@@ -1,42 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><cartes>
     <carte>
-        <nomCarte>L'IMT Nord Europe</nomCarte>
-        <nomJoueur>Félix</nomJoueur>
-        <score>115</score>
+        <nomCarte>L'IMT Nord Horror</nomCarte>
+        <nomJoueur>Baptiste</nomJoueur>
+        <score>180</score>
     </carte>
     <carte>
-        <nomCarte>L'IMT Nord Europe</nomCarte>
-        <nomJoueur>test2</nomJoueur>
-        <score>2</score>
+        <nomCarte>L'IMT Nord Horror</nomCarte>
+        <nomJoueur>Felix</nomJoueur>
+        <score>170</score>
     </carte>
     <carte>
-        <nomCarte>L'IMT Nord Europe</nomCarte>
-        <nomJoueur>test1</nomJoueur>
-        <score>1</score>
-    </carte>
-    <carte>
-        <nomCarte>Le CROUS ténébreux</nomCarte>
-        <nomJoueur>test3</nomJoueur>
-        <score>3</score>
+        <nomCarte>L'IMT Nord Horror</nomCarte>
+        <nomJoueur>Arthur</nomJoueur>
+        <score>145</score>
     </carte>
     <carte>
         <nomCarte>Le CROUS ténébreux</nomCarte>
-        <nomJoueur>test2</nomJoueur>
-        <score>2</score>
+        <nomJoueur>Youyou</nomJoueur>
+        <score>9100</score>
+    </carte>
+    <carte>
+        <nomCarte>Le CROUS ténébreux</nomCarte>
+        <nomJoueur>Eva</nomJoueur>
+        <score>190</score>
+    </carte>
+    <carte>
+        <nomCarte>Le CROUS ténébreux</nomCarte>
+        <nomJoueur>Youyou</nomJoueur>
+        <score>165</score>
     </carte>
     <carte>
         <nomCarte>La BU enchantée</nomCarte>
-        <nomJoueur>Félix</nomJoueur>
-        <score>510</score>
+        <nomJoueur>Manoline</nomJoueur>
+        <score>175</score>
     </carte>
     <carte>
         <nomCarte>La BU enchantée</nomCarte>
-        <nomJoueur>Félix</nomJoueur>
-        <score>380</score>
+        <nomJoueur>Emilien</nomJoueur>
+        <score>165</score>
     </carte>
     <carte>
         <nomCarte>La BU enchantée</nomCarte>
-        <nomJoueur>test1</nomJoueur>
-        <score>1</score>
+        <nomJoueur>Manomano</nomJoueur>
+        <score>160</score>
     </carte>
 </cartes>

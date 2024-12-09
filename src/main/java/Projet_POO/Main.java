@@ -62,8 +62,9 @@ public class Main {
         int numCarte = scanner.nextInt();
         System.out.println(xml.afficherScore(cartesDispo.get(numCarte-1)));
         scanner.nextLine();
+        System.out.println("[Appuyez sur entrer]");
 
-        Joueur joueur1 = new Joueur(100,10,10,50,50, name);
+        Joueur joueur1 = new Joueur(100,10,10,30,50, name);
         ChoisirLaCapacite(joueur1, logger);
 
         Partie partie = new Partie(joueur1, cartesDispo.get(numCarte-1));

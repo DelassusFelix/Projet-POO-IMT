@@ -162,6 +162,7 @@ public class Partie {
             // Vérifie si le joueur est mort après un combat
             if (!joueur.checkAlive()) {
                 logger.log("\nGame Over. Vous êtes mort.");
+                System.out.println("score : " + joueur.getScore()); 
                 xml.modifyXML(carte, joueur.getScore(), joueur.getNom());
                 break;
             }
@@ -169,6 +170,7 @@ public class Partie {
             // Conditions de victoire
             if (carte.estArrivee() && joueur.checkAlive()) {
                 logger.log("Bravo ! Vous avez traversé \"" + carte.getNom() + "\" !");
+                System.out.println("score : " + joueur.getScore()); 
                 xml.modifyXML(carte, joueur.getScore(), joueur.getNom());
                 scanner.nextLine();
                 break;
@@ -187,6 +189,7 @@ public class Partie {
         logger.log("Coup critique : " + joueur.getCritique() + " %");
         logger.log("Défense : " + joueur.getDefense());
         logger.log("Esquive : " + joueur.getEsquive() + " %");
+        logger.log("Capacite : " + joueur.capacite.getNom());
         joueur.showObjets();
         logger.log("\n\n");
     }
@@ -258,11 +261,10 @@ public class Partie {
             logger.log("1. Attaquer");
             logger.log("2. Fuir");
             logger.log("3. Utiliser un objet");
-            if (joueur.capacite.isDisponible() && countCapacite < joueur.capacite.getCount()) {
-                logger.log("4. Utiliser votre capacité");
+            System.out.println("4. Utiliser votre capacite");
+            if (joueur.capacite instanceof CapaciteActiveInterface) {
+                System.out.println("capacite " + countCapacite + " / " + joueur.capacite.getCount());
             }
-
-
             System.out.print("> ");
             int choix = scanner.nextInt();
             scanner.nextLine(); // Pause nécessaire
@@ -306,14 +308,22 @@ public class Partie {
                         break;
                     }
                 }
-            } else if (choix == 4 && joueur.capacite.isDisponible() && countCapacite < joueur.capacite.getCount()) {
-                capaciteActive = true;
-                if (joueur.capacite instanceof CapaciteAffectantEnnemi) {
-                    joueur.capacite.useEffect(ennemi);
+            } else if (choix == 4) {
+                if (
+                    joueur.capacite instanceof CapaciteActiveInterface && 
+                    joueur.capacite.isDisponible() && 
+                    countCapacite < joueur.capacite.getCount()
+                ){
+                    capaciteActive = true; 
+                    if (joueur.capacite instanceof CapaciteAffectantEnnemi){
+                        joueur.capacite.useEffect(ennemi);
+                    } else {
+                        joueur.capacite.useEffect(joueur); 
+                    }
+                    countCapacite += 1; 
                 } else {
-                    joueur.capacite.useEffect(joueur);
+                    System.out.println("Vous ne pouvez pas utiliser de capacité passive en combat, ou vous avez déjà utiliser votre capacité");
                 }
-                countCapacite += 1;
             } else if (choix == 3) {
                 logger.log(joueur.showObjets());
                 joueur.useObjets();

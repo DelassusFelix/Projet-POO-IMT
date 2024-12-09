@@ -3,7 +3,7 @@ package Projet_POO;
 public class PasDePlume extends Utilitaire implements CapacitePassiveInterface {
 
     public PasDePlume(){
-        super("Agile bill, te voila leger comme l'air. Tu doubles ta capacité d'esquive", "Pas de plume"); 
+        super("Agile Bill.. te voila leger comme l'air. Tu doubles ta capacité d'esquive", "Pas de plume"); 
     }
 
     @Override

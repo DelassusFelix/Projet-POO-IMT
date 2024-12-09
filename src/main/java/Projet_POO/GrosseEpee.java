@@ -3,7 +3,7 @@ package Projet_POO;
 public class GrosseEpee extends Utilitaire implements CapacitePassiveInterface {
 
     public GrosseEpee(){
-        super("Voici une meilleure épée !", "Grosse Epée");
+        super("Voici une meilleure épée ! Elle va doubler ta force.. oui, ce sera brutal", "Grosse Epée");
 
     }
 
