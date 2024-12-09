@@ -39,6 +39,8 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("BERTRAND Baptiste & DELASSUS Félix.");
+
         logger.log("\n" +
                 "██╗███╗   ███╗████████╗    ████████╗██╗  ██╗███████╗███╗   ███╗     █████╗ ██╗     ██╗     \n" +
                 "██║████╗ ████║╚══██╔══╝    ╚══██╔══╝██║  ██║██╔════╝████╗ ████║    ██╔══██╗██║     ██║     \n" +
