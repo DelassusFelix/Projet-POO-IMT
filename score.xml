@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><cartes>
     <carte>
-        <nomCarte>L'IMT Nord Europe</nomCarte>
+        <nomCarte>L'IMT Nord Horror</nomCarte>
         <nomJoueur>Félix</nomJoueur>
         <score>115</score>
     </carte>
     <carte>
-        <nomCarte>L'IMT Nord Europe</nomCarte>
+        <nomCarte>L'IMT Nord Horror</nomCarte>
         <nomJoueur>test2</nomJoueur>
         <score>2</score>
     </carte>
     <carte>
-        <nomCarte>L'IMT Nord Europe</nomCarte>
+        <nomCarte>L'IMT Nord Horror</nomCarte>
         <nomJoueur>test1</nomJoueur>
         <score>1</score>
     </carte>
