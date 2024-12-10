@@ -33,11 +33,11 @@ public class Potion extends Utilitaire implements CapaciteActiveInterface {
      * @param personnage le personnage qui utilise la potion
      */
     @Override
-    public void useEffect(Personnage personnage) {
-        System.out.println("On a utilisé la capacité active potion");
-        personnage.pv = personnage.pv + 5;
-        if (personnage.pv > 10) {
-            personnage.pv = 10;
+    public void useEffect(Personnage personnage){
+        System.out.println("on a utilisé la capacité active potion");
+        personnage.pv = personnage.pv + 30;
+        if (personnage.pv > 100 ){
+            personnage.pv = 100;
         }
     }
 

@@ -4349,3 +4349,61 @@ Brigand vie : [==================================================] 60/60
 1. Attaquer
 2. Fuir
 3. Utiliser un objet
+
+██╗███╗   ███╗████████╗    ████████╗██╗  ██╗███████╗███╗   ███╗     █████╗ ██╗     ██╗     
+██║████╗ ████║╚══██╔══╝    ╚══██╔══╝██║  ██║██╔════╝████╗ ████║    ██╔══██╗██║     ██║     
+██║██╔████╔██║   ██║          ██║   ███████║█████╗  ██╔████╔██║    ███████║██║     ██║     
+██║██║╚██╔╝██║   ██║          ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║     
+██║██║ ╚═╝ ██║   ██║          ██║   ██║  ██║███████╗██║ ╚═╝ ██║    ██║  ██║███████╗███████╗
+╚═╝╚═╝     ╚═╝   ╚═╝          ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚══════╝
+
+Bienvenue jeune aventurier !
+
+Comment vous appellez vous ? : 
+
+Seléctionnez une carte : 
+== Capacité actives ==
+1. Casque de Chantier - Enfile ton casque ! Double ta défense pendant 3 attaques
+2. Cocktail Molotov - Ca va chauffer.. brule tous les ennemis d'un seul coup
+3. Lame Aiguisée - Affuté.. double tes chances de critique pendant 3 attaques. Ca va piquer !
+4. Potion - Une grande soif contre les grands dégâts. Restaure 30 PV
+
+== Capacité passives ==
+5. Gillet par Balle - Pas de place aux doutes. Mets ton gilet, sois fort et gagne 1 point de défense
+6. Grosse Epée - Voici une meilleure épée !
+7. Pas de plume - Agile bill, te voila leger comme l'air. Tu doubles ta capacité d'esquive
+
+Quelle capacité souhaitez vous prendre : 
+>
+Vous avez choisi la capacité active : Casque de Chantier
+
+Bienvenue dans l'aventure sur la carte "Le CROUS ténébreux".
+Bonne chance !
+-------------------------------------------------
+
+=== Position : 1 / 4 ===
+Restez alertes, vous entrez dans le self.
+
+1. Lancer la partie.
+2. Consulter l'état du héros
+3. Acheter un objet
+
+=== Position : 1 / 4 ===
+Restez alertes, vous entrez dans le self.
+
+=== Choisissez un ennemi à combattre ===
+1. Brigand (lvl: 1 ,PV: 30)
+
+Votre vie : [==================================================] 100/100
+Brigand vie : [==================================================] 30/30
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+4. Utiliser votre capacité
+
+Votre vie : [==================================================] 100/100
+Brigand vie : [==================================================] 30/30
+1. Attaquer
+2. Fuir
+3. Utiliser un objet
+4. Utiliser votre capacité
